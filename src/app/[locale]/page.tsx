@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
@@ -33,10 +33,8 @@ export default function HomePage() {
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const [phase, setPhase] = useState<Phase>('splash')
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
+  useLayoutEffect(() => {
     if (localStorage.getItem('codex_intro_done')) {
       setPhase('library')
     }
@@ -50,45 +48,6 @@ export default function HomePage() {
 
   const getEntryCount = (categoryId: string) =>
     seedData.entries.filter(e => e.categoryId === categoryId).length
-
-  if (!mounted) {
-    return (
-      <div style={{
-        position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-        zIndex: 99999,
-        background: 'linear-gradient(135deg, #0f1f3a 0%, #1a3a6a 25%, #2a5aaa 50%, #1a3a6a 75%, #0f1f3a 100%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: 'Tahoma, sans-serif',
-      }}>
-        <div style={{ textAlign: 'center', padding: 40 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 80, height: 80,
-            background: 'linear-gradient(135deg, #3a7ada, #1a3a6a)',
-            border: '3px solid rgba(255,255,255,0.3)',
-            borderRadius: 12,
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.5)',
-            fontSize: 36, marginBottom: 24,
-          }}>
-            📖
-          </div>
-          <h1 style={{
-            fontFamily: 'Tahoma, sans-serif', fontSize: 52, fontWeight: 'bold',
-            color: '#ffffff', letterSpacing: 8, textTransform: 'uppercase',
-            textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
-            margin: '0 0 12px 0',
-          }}>
-            Codex Mundi
-          </h1>
-          <div style={{
-            width: 200, height: 2,
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
-            margin: '0 auto 24px',
-          }} />
-        </div>
-      </div>
-    )
-  }
 
   if (phase === 'splash') {
     return <SplashScreen onComplete={() => setPhase('disclaimer')} locale={locale} dict={dict} />
