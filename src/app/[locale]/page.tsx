@@ -32,12 +32,13 @@ export default function HomePage() {
   const params = useParams()
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
-  const [phase, setPhase] = useState<Phase>(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem('codex_intro_done')) {
-      return 'library'
+  const [phase, setPhase] = useState<Phase>('splash')
+
+  useEffect(() => {
+    if (localStorage.getItem('codex_intro_done')) {
+      setPhase('library')
     }
-    return 'splash'
-  })
+  }, [])
   const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 

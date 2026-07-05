@@ -50,8 +50,8 @@ export default function CategoryPage() {
         <Sidebar locale={locale} router={router} t={t} />
         <main className="cm-main">
           <div className="cm-content-box">
-            <div className="flex items-center gap-2 mb-2">
-              <button className="cm-btn text-xs" onClick={() => router.push(`/${locale}`)}>
+            <div className="cm-breadcrumb">
+              <button className="cm-btn" onClick={() => router.push(`/${locale}`)}>
                 ← {t('categories.backToCategories')}
               </button>
             </div>

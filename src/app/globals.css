@@ -375,6 +375,14 @@ body {
   background: #2a7a20;
 }
 
+/* ===== BREADCRUMB ===== */
+.cm-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 /* ===== DIVIDER ===== */
 .cm-divider {
   border: none;
