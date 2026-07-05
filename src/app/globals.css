@@ -582,3 +582,26 @@ body {
   color: var(--color-cm-text-light);
   font-family: var(--font-heading);
 }
+
+/* ===== COOKIE BANNER ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-cm-header-bg);
+  color: var(--color-cm-header-text);
+  z-index: 9997;
+  border-top: 2px solid var(--color-cm-decorative);
+  padding: 10px 16px;
+}
+
+.cookie-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 960px;
+  margin: 0 auto;
+}

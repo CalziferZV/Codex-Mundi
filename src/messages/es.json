@@ -1,64 +1,183 @@
 {
+  "site": {
+    "title": "Codex Mundi",
+    "subtitle": "La Biblioteca de Alejandría del Conocimiento Humano",
+    "description": "Un compendio de todo el conocimiento humano, real y especulativo",
+    "disclaimer": "Nada de lo aquí escrito debe tomarse como verdad absoluta. Este archivo del conocimiento humano recopila información de múltiples fuentes, incluyendo teorías, hipótesis, mitos, leyendas y especulaciones. Todo está abierto a mejora, contraste y corrección. El conocimiento es un organismo vivo que evoluciona con cada contribución.",
+    "splashPhrases": [
+      "Antes de que existieran los libros, existía la palabra. Antes de la palabra, existió la idea.",
+      "Todo el conocimiento del mundo, en un solo lugar.",
+      "La Biblioteca de Alejandría renace en píxeles.",
+      "Lo real y lo imaginario, lo cierto y lo dudoso, todo tiene cabida aquí.",
+      "Un archivo de todo lo que fue, es, podría ser o nunca fue.",
+      "El conocimiento no es verdad, es pregunta."
+    ],
+    "splashSubtitle": "Haz clic para entrar al archivo del conocimiento",
+    "enter": "Entrar a Codex Mundi"
+  },
+  "nav": {
+    "home": "Inicio",
+    "categories": "Categorías",
+    "search": "Buscar",
+    "admin": "Admin",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión",
+    "start": "Inicio",
+    "contributions": "Contribuciones",
+    "entries": "Entradas"
+  },
+  "home": {
+    "welcome": "Bienvenido a Codex Mundi",
+    "explore": "Explora las categorías para descubrir conocimiento",
+    "recentEntries": "Entradas recientes",
+    "allCategories": "Todas las categorías",
+    "totalEntries": "entradas en total",
+    "enter": "ENTRAR A CODEX MUNDI"
+  },
+  "categories": {
+    "title": "Categorías",
+    "noEntries": "No hay entradas en esta categoría",
+    "backToCategories": "Volver a categorías"
+  },
+  "entry": {
+    "realityStatus": "Estado de realidad",
+    "subsections": "Subsecciones",
+    "backToCategory": "Volver a la categoría",
+    "source": "Fuente",
+    "contributions": "Contribuciones",
+    "suggestEdit": "Sugerir edición",
+    "editedBy": "Editado por",
+    "lastUpdated": "Última actualización"
+  },
+  "search": {
+    "title": "Buscar en Codex Mundi",
+    "placeholder": "Escribe tu búsqueda...",
+    "noResults": "No se encontraron resultados",
+    "resultsFor": "Resultados para",
+    "searchIn": "Buscar en todo el archivo"
+  },
+  "auth": {
+    "loginTitle": "Iniciar sesión",
+    "registerTitle": "Crear cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "username": "Nombre de usuario",
+    "submitLogin": "Entrar",
+    "submitRegister": "Registrarse",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "registerLink": "Regístrate aquí",
+    "loginLink": "Inicia sesión aquí"
+  },
+  "admin": {
+    "dashboard": "Panel de administración",
+    "manageEntries": "Gestionar entradas",
+    "manageCategories": "Gestionar categorías",
+    "manageContributions": "Gestionar contribuciones",
+    "pendingContributions": "Contribuciones pendientes",
+    "createEntry": "Crear entrada",
+    "createCategory": "Crear categoría",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "approve": "Aprobar",
+    "reject": "Rechazar"
+  },
+  "reality": {
+    "historical": "Histórico comprobado",
+    "scientific": "Científico",
+    "hypothesis": "Hipótesis",
+    "theoretical": "Teórico",
+    "mythological": "Mitológico",
+    "speculative": "Especulativo",
+    "conspiratorial": "Conspirativo",
+    "fiction": "Ficción",
+    "philosophical": "Filosófico",
+    "unclassified": "Sin clasificar"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "confirm": "Confirmar",
+    "accept": "Aceptar y entrar"
+  },
   "privacy": {
     "title": "Aviso de Privacidad",
     "lastUpdate": "Última actualización: Julio 2026",
-    "intro": "En Codex Mundi nos tomamos tu privacidad en serio. Esta política explica qué datos recopilamos, cómo los usamos y qué derechos tienes.",
+    "intro": "En Codex Mundi nos tomamos tu privacidad en serio. Esta política explica qué datos recopilamos, cómo los usamos y qué derechos tienes, en cumplimiento del Reglamento General de Protección de Datos (RGPD - UE 2016/679) y la Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales (LOPDGDD - Ley 3/2018, de 5 de diciembre).",
     "dataWeCollect": "Datos que recopilamos",
-    "dataWeCollectDesc": "Cuando navegas por Codex Mundi sin iniciar sesión, no recopilamos ningún dato personal. Solo almacenamos una cookie de idioma (NEXT_LOCALE) para recordar tu preferencia de idioma, y datos en localStorage de tu navegador para recordar que ya viste la pantalla de bienvenida. Si creas una cuenta, recopilamos: tu correo electrónico, nombre de usuario, y contraseña (encriptada). Opcionalmente puedes añadir un avatar y biografía.",
-    "howWeUse": "Cómo usamos tus datos",
-    "howWeUseDesc": "Tu correo se usa solo para iniciar sesión. Tu nombre de usuario se muestra junto a tus contribuciones. No compartimos tus datos con terceros. No usamos analytics, rastreadores, ni anuncios.",
+    "dataWeCollectDesc": "Cuando navegas por Codex Mundi sin iniciar sesión, no recopilamos ningún dato personal. Solo almacenamos una cookie funcional de idioma (NEXT_LOCALE) para recordar tu preferencia de idioma. Si creas una cuenta, recopilamos exclusivamente: tu correo electrónico (para inicio de sesión), nombre de usuario (se muestra junto a tus contribuciones), y contraseña (almacenada con hash, nunca en texto plano). Opcionalmente puedes añadir un avatar y biografía. No recopilamos dirección IP, geolocalización, historial de navegación, ni ningún otro dato adicional.",
+    "howWeUse": "Base legal y finalidad del tratamiento",
+    "howWeUseDesc": "La base legal del tratamiento de tus datos es tu consentimiento explícito al registrarte (RGPD art. 6.1.a). Tus datos se usan exclusivamente para: (1) permitir el inicio de sesión, (2) mostrar tu nombre de usuario como autor de contribuciones, (3) gestionar tu cuenta. No compartimos tus datos con terceros. No usamos analytics, rastreadores, ni publicidad. No realizamos perfiles ni toma de decisiones automatizada.",
     "cookies": "Cookies",
-    "cookiesDesc": "Usamos una única cookie: NEXT_LOCALE, para recordar tu idioma. Cuando inicies sesión, Supabase puede añadir cookies de autenticación necesarias para el funcionamiento del sitio. Puedes bloquear las cookies desde tu navegador, aunque algunas funciones podrían no funcionar.",
-    "yourRights": "Tus derechos",
-    "yourRightsDesc": "Puedes solicitar en cualquier momento: acceso a tus datos, rectificación, eliminación (derecho al olvido), y exportación de tus datos. Para ejercer tus derechos, escribe a carlosrebollar09@gmail.com.",
-    "thirdParty": "Servicios de terceros",
-    "thirdPartyDesc": "Codex Mundi está alojado en Vercel. Los datos de usuario se almacenan en Supabase. Ambos proveedores cumplen con GDPR. No utilizamos Google Analytics, Facebook Pixel, ni ningún otro servicio de rastreo.",
+    "cookiesDesc": "Utilizamos exclusivamente cookies técnicas/funcionales exentas de consentimiento según la Directiva 2009/136/CE y la LSSI-CE. La única cookie propia es NEXT_LOCALE (recordar idioma). Cuando implementemos inicio de sesión con Supabase, se añadirán cookies de autenticación (sb-*-auth-token), estrictamente necesarias para el funcionamiento del servicio. Puedes bloquearlas desde tu navegador, aunque algunas funciones podrían no funcionar.",
+    "yourRights": "Tus derechos (RGPD art. 15-22)",
+    "yourRightsDesc": "Puedes ejercer en cualquier momento tus derechos de: acceso (saber qué datos tenemos), rectificación (corregir datos erróneos), supresión (derecho al olvido), limitación del tratamiento, portabilidad (recibir tus datos en formato JSON), oposición, y a no ser objeto de decisiones automatizadas. Para ejercerlos, escribe a carlosrebollar09@gmail.com. Responderemos en menos de 30 días. Si no estás satisfecho, puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).",
+    "retention": "Plazo de conservación",
+    "retentionDesc": "Conservamos tus datos mientras mantengas tu cuenta activa. Si solicitas el borrado de tu cuenta o permaneces inactivo por más de 3 años, eliminaremos todos tus datos personales. Las contribuciones anónimas (sin cuenta asociada) podrían conservarse con fines archivísticos pero sin datos personales vinculados.",
+    "thirdParty": "Destinatarios y transferencias internacionales",
+    "thirdPartyDesc": "Codex Mundi está alojado en Vercel Inc. (San Francisco, EE.UU.). Los datos de usuario se almacenan en Supabase Inc. (San Francisco, EE.UU.). Ambos proveedores cumplen con el RGPD mediante las Cláusulas Contractuales Tipo (SCC) adoptadas por la Comisión Europea. No cedemos datos a terceros, no hay transferencias internacionales adicionales, y no utilizamos Google Analytics, Facebook Pixel ni ningún otro servicio de rastreo o publicidad.",
+    "security": "Medidas de seguridad",
+    "securityDesc": "Aplicamos medidas técnicas y organizativas para proteger tus datos: cifrado HTTPS en toda la comunicación, contraseñas con hash bcrypt, acceso restringido a la base de datos, y mínimo privilegio en las claves de API. Realizamos copias de seguridad periódicas.",
     "changes": "Cambios a esta política",
-    "changesDesc": "Notificaremos cualquier cambio significativo en esta política mediante un aviso en la web."
+    "changesDesc": "Notificaremos cualquier cambio significativo mediante un aviso en la web. Te recomendamos revisar esta política periódicamente."
   },
   "terms": {
     "title": "Términos de Uso",
     "lastUpdate": "Última actualización: Julio 2026",
-    "intro": "Al usar Codex Mundi, aceptas los siguientes términos.",
+    "intro": "Al usar Codex Mundi, aceptas los siguientes términos. Si no estás de acuerdo, no uses el sitio.",
     "contentNature": "Naturaleza del contenido",
-    "contentNatureDesc": "Codex Mundi es un archivo neutral del conocimiento humano. Recopila información de múltiples fuentes, incluyendo teorías, hipótesis, mitos, leyendas y especulaciones. NADA de lo aquí escrito debe tomarse como verdad absoluta. Cada entrada está clasificada según su estado de realidad. Es responsabilidad del lector evaluar críticamente el contenido.",
+    "contentNatureDesc": "Codex Mundi es un archivo neutral del conocimiento humano. Recopila información de múltiples fuentes, incluyendo teorías, hipótesis, mitos, leyendas y especulaciones. NADA de lo aquí escrito debe tomarse como verdad absoluta. Cada entrada está clasificada según su estado de realidad (histórico, científico, hipótesis, teórico, mitológico, especulativo, conspirativo, ficción, filosófico). Es responsabilidad exclusiva del lector evaluar críticamente el contenido. El administrador no garantiza la veracidad, exactitud ni integridad de ninguna entrada.",
+    "eligibility": "Requisitos de edad",
+    "eligibilityDesc": "Para registrarte y contribuir, debes tener al menos 14 años de edad (tal como exige el RGPD en España, Ley 3/2018 art. 7). Si eres menor de 14 años, no puedes crear una cuenta ni proporcionar datos personales. El uso del sitio en modo navegación (sin registro) no tiene restricción de edad bajo supervisión parental.",
     "userConduct": "Conducta del usuario",
-    "userConductDesc": "No uses Codex Mundi para: difundir información falsa como si fuera verificada, acosar a otros usuarios, violar derechos de autor, o realizar actividades ilegales.",
-    "contributions": "Contribuciones",
-    "contributionsDesc": "Al contribuir contenido, otorgas a Codex Mundi una licencia para almacenar, mostrar y distribuir tu contribución. Eres responsable de que tu contribución no infrinja derechos de terceros.",
+    "userConductDesc": "No uses Codex Mundi para: (a) difundir información falsa presentándola como verificada, (b) acosar, amenazar o dañar a otros usuarios, (c) violar derechos de propiedad intelectual, (d) publicar datos personales de terceros sin su consentimiento, (e) realizar actividades ilegales o fraudulentas, (f) publicar contenido protegido por derechos de autor sin autorización, (g) introducir malware o realizar ataques al sistema.",
+    "contributions": "Contribuciones de usuarios",
+    "contributionsDesc": "Al contribuir contenido, otorgas a Codex Mundi una licencia no exclusiva, gratuita y mundial para almacenar, mostrar, distribuir y archivar tu contribución. Eres el único responsable de que tu contribución no infrinja derechos de terceros. Las contribuciones se publican bajo la misma licencia del proyecto (Creative Commons BY-NC-SA 4.0). El administrador se reserva el derecho de moderar, editar o rechazar contribuciones que violen estos términos.",
     "disclaimer": "Limitación de responsabilidad",
-    "disclaimerDesc": "Codex Mundi no se hace responsable del uso que los usuarios den al contenido. El archivo es un reflejo del conocimiento humano, no una fuente de verdad absoluta. El administrador se reserva el derecho de moderar, editar o eliminar contenido que viole estos términos.",
-    "termination": "Terminación",
-    "terminationDesc": "Podemos suspender cuentas que violen estos términos sin previo aviso."
+    "disclaimerDesc": "Codex Mundi se proporciona \"tal cual\", sin garantías de ningún tipo. El administrador no es responsable de: (a) la exactitud del contenido generado por usuarios, (b) daños derivados del uso de la información, (c) la disponibilidad continua del servicio, (d) contenido de enlaces externos. El archivo es un reflejo del saber humano, no una fuente de verdad absoluta.",
+    "termination": "Suspensión y terminación",
+    "terminationDesc": "Podemos suspender o eliminar cuentas que violen estos términos sin previo aviso. Los usuarios serán notificados por correo electrónico cuando sea posible. El usuario puede eliminar su cuenta en cualquier momento escribiendo a carlosrebollar09@gmail.com.",
+    "applicableLaw": "Legislación aplicable",
+    "applicableLawDesc": "Estos términos se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de la ciudad de residencia del administrador, con renuncia a cualquier otro fuero que pudiera corresponderles."
   },
   "legal": {
     "title": "Aviso Legal",
     "responsible": "Responsable del sitio",
     "responsibleDesc": "Carlos Rebollar (CalziferZV)",
     "contact": "Contacto: carlosrebollar09@gmail.com",
-    "purpose": "Codex Mundi es un proyecto personal sin ánimo de lucro, con fines educativos, culturales y de preservación del conocimiento.",
+    "purpose": "Codex Mundi es un proyecto personal sin ánimo de lucro, con fines educativos, culturales y de preservación del conocimiento, al amparo del artículo 20 de la Constitución Española (libertad de expresión y cátedra).",
     "intellectualProperty": "Propiedad intelectual",
-    "intellectualPropertyDesc": "El código fuente del proyecto es abierto. El contenido del archivo se ofrece bajo una licencia Creative Commons BY-NC-SA 4.0, salvo que se indique lo contrario. Las marcas y logos mencionados pertenecen a sus respectivos dueños."
+    "intellectualPropertyDesc": "El código fuente del proyecto es de código abierto. El contenido del archivo se ofrece bajo licencia Creative Commons BY-NC-SA 4.0 (Reconocimiento-NoComercial-CompartirIgual), salvo que se indique lo contrario. Las marcas comerciales y logotipos mencionados pertenecen a sus respectivos dueños y se usan únicamente con fines referenciales o educativos.",
+    "lssi": "LSSI-CE",
+    "lssiDesc": "En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico, se informa que el titular de este sitio web es Carlos Rebollar, con correo de contacto carlosrebollar09@gmail.com. El sitio no realiza comunicaciones comerciales ni recopila datos sin consentimiento explícito.",
+    "hosting": "Alojamiento",
+    "hostingDesc": "Este sitio está alojado en Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, EE.UU."
   },
   "cookiesPolicy": {
     "title": "Política de Cookies",
-    "intro": "Codex Mundi utiliza cookies mínimas y exclusivamente funcionales.",
-    "cookieList": "Lista de cookies",
+    "intro": "Codex Mundi utiliza cookies estrictamente funcionales y técnicas. No utilizamos cookies de publicidad, analytics, redes sociales ni de terceros.",
+    "cookieList": "Lista de cookies utilizadas",
+    "legalFramework": "Marco legal",
+    "legalFrameworkDesc": "De acuerdo con la Directiva 2009/136/CE (modificación de la Directiva 2002/58/CE) y su transposición en España mediante la LSSI-CE (Ley 34/2002), las cookies técnicas y funcionales están exentas del consentimiento previo del usuario. Todas las cookies utilizadas en Codex Mundi son estrictamente necesarias para el funcionamiento del servicio.",
+    "manage": "Puedes gestionar o eliminar las cookies desde la configuración de tu navegador. Los enlaces para los navegadores más comunes son: Chrome (chrome://settings/cookies), Firefox (about:preferences#privacy), Safari (Preferencias > Privacidad), Edge (edge://settings/cookies).",
     "items": [
       {
         "name": "NEXT_LOCALE",
-        "purpose": "Recordar tu preferencia de idioma",
-        "type": "Funcional (técnica)",
+        "purpose": "Recordar tu preferencia de idioma (es/en)",
+        "type": "Técnica / Funcional",
         "duration": "1 año"
       },
       {
         "name": "sb-*-auth-token",
-        "purpose": "Autenticación de sesión (solo si inicias sesión)",
-        "type": "Funcional (técnica)",
+        "purpose": "Cookie de autenticación de sesión (solo si inicias sesión con Supabase)",
+        "type": "Técnica / Necesaria",
         "duration": "Sesión"
       }
-    ],
-    "consent": "No necesitamos consentimiento previo porque solo usamos cookies técnicas/funcionales, que están exentas según la directiva europea de privacidad electrónica.",
-    "manage": "Puedes gestionar o eliminar las cookies desde la configuración de tu navegador."
+    ]
   }
 }

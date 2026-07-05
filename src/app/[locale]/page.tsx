@@ -10,6 +10,8 @@ import SplashScreen from './SplashScreen'
 import DisclaimerModal from './DisclaimerModal'
 import Sidebar from './Sidebar'
 import Header from './Header'
+import Footer from './Footer'
+import CookieBanner from './CookieBanner'
 
 const realityColors: Record<string, string> = {
   historical: '#2d5a8a',
@@ -247,25 +249,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="cm-footer">
-            <div className="flex justify-center gap-4 mb-2">
-              <a className="cm-link text-xs" onClick={() => router.push(`/${locale}/legal/privacy`)}>
-                {locale === 'es' ? 'Privacidad' : 'Privacy'}
-              </a>
-              <a className="cm-link text-xs" onClick={() => router.push(`/${locale}/legal/cookies`)}>
-                {locale === 'es' ? 'Cookies' : 'Cookies'}
-              </a>
-              <a className="cm-link text-xs" onClick={() => router.push(`/${locale}/legal/terms`)}>
-                {locale === 'es' ? 'Términos' : 'Terms'}
-              </a>
-              <a className="cm-link text-xs" onClick={() => router.push(`/${locale}/legal/notice`)}>
-                {locale === 'es' ? 'Aviso legal' : 'Legal notice'}
-              </a>
-            </div>
-            {t('site.title')} &mdash; {t('site.subtitle')}
-          </div>
+          <Footer locale={locale} t={t} />
         </main>
       </div>
+      <CookieBanner locale={locale} />
     </>
   )
 }

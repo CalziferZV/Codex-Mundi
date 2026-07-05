@@ -5,6 +5,8 @@ import { getDictionary, getNestedValue, type Dictionary } from '@/lib/i18n/dicti
 import type { Locale } from '@/lib/i18n/config'
 import Header from '../../Header'
 import Sidebar from '../../Sidebar'
+import Footer from '../../Footer'
+import CookieBanner from '../../CookieBanner'
 
 function getDictValue(dict: Dictionary | null, path: string, fallback: string): string {
   if (!dict) return fallback
@@ -33,13 +35,21 @@ export default function LegalNoticePage() {
             <p>{t('legal.contact')}</p>
             <h2>{locale === 'es' ? 'Propósito' : 'Purpose'}</h2>
             <p>{t('legal.purpose')}</p>
+            <h2>{t('legal.lssi')}</h2>
+            <p>{t('legal.lssiDesc')}</p>
+            <h2>{t('legal.hosting')}</h2>
+            <p>{t('legal.hostingDesc')}</p>
             <h2>{t('legal.intellectualProperty')}</h2>
             <p>{t('legal.intellectualPropertyDesc')}</p>
             <hr className="cm-divider" />
-            <a className="cm-link" onClick={() => router.push(`/${locale}`)}>← {locale === 'es' ? 'Volver al inicio' : 'Back to home'}</a>
+            <a className="cm-link" onClick={() => router.push(`/${locale}`)}>
+              ← {locale === 'es' ? 'Volver al inicio' : 'Back to home'}
+            </a>
           </div>
+          <Footer locale={locale} t={t} />
         </main>
       </div>
+      <CookieBanner locale={locale} />
     </>
   )
 }
