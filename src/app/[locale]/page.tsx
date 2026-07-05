@@ -33,12 +33,15 @@ export default function HomePage() {
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const [phase, setPhase] = useState<Phase>('splash')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     if (localStorage.getItem('codex_intro_done')) {
       setPhase('library')
     }
   }, [])
+
   const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
@@ -47,6 +50,45 @@ export default function HomePage() {
 
   const getEntryCount = (categoryId: string) =>
     seedData.entries.filter(e => e.categoryId === categoryId).length
+
+  if (!mounted) {
+    return (
+      <div style={{
+        position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+        zIndex: 99999,
+        background: 'linear-gradient(135deg, #0f1f3a 0%, #1a3a6a 25%, #2a5aaa 50%, #1a3a6a 75%, #0f1f3a 100%)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'Tahoma, sans-serif',
+      }}>
+        <div style={{ textAlign: 'center', padding: 40 }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            width: 80, height: 80,
+            background: 'linear-gradient(135deg, #3a7ada, #1a3a6a)',
+            border: '3px solid rgba(255,255,255,0.3)',
+            borderRadius: 12,
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.5)',
+            fontSize: 36, marginBottom: 24,
+          }}>
+            📖
+          </div>
+          <h1 style={{
+            fontFamily: 'Tahoma, sans-serif', fontSize: 52, fontWeight: 'bold',
+            color: '#ffffff', letterSpacing: 8, textTransform: 'uppercase',
+            textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
+            margin: '0 0 12px 0',
+          }}>
+            Codex Mundi
+          </h1>
+          <div style={{
+            width: 200, height: 2,
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
+            margin: '0 auto 24px',
+          }} />
+        </div>
+      </div>
+    )
+  }
 
   if (phase === 'splash') {
     return <SplashScreen onComplete={() => setPhase('disclaimer')} locale={locale} dict={dict} />
@@ -66,7 +108,6 @@ export default function HomePage() {
         <Sidebar locale={locale} router={router} t={t} />
 
         <main className="cm-main">
-          {/* Window 1: Welcome & Stats */}
           <div className="cm-content-box">
             <h1>{t('site.title')}</h1>
             <p className="mt-2" style={{ fontSize: 13, color: '#444' }}>{t('site.subtitle')}</p>
@@ -88,7 +129,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Window 2: Category Browser */}
           <div className="cm-content-box">
             <h1>{locale === 'es' ? 'Explorar categorías' : 'Browse categories'}</h1>
             <div className="cm-grid-2">
@@ -120,7 +160,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Window 3: Recent Entries */}
           <div className="cm-content-box">
             <h1>{t('home.recentEntries')}</h1>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -167,7 +206,6 @@ export default function HomePage() {
             </table>
           </div>
 
-          {/* Window 4: Reality Legend */}
           <div className="cm-content-box">
             <h1>{locale === 'es' ? 'Clasificación por realidad' : 'Reality classification'}</h1>
             <p className="cm-meta" style={{ marginBottom: 8 }}>
