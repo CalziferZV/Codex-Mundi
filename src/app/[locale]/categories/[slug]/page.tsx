@@ -49,13 +49,13 @@ export default function CategoryPage() {
       <div className="cm-body">
         <Sidebar locale={locale} router={router} t={t} />
         <main className="cm-main">
+          <div style={{ marginBottom: 4 }}>
+            <button className="cm-btn" onClick={() => router.push(`/${locale}`)}
+              style={{ padding: '4px 16px' }}>
+              ← {t('categories.backToCategories')}
+            </button>
+          </div>
           <div className="cm-content-box">
-            <div style={{ textAlign: 'center', marginBottom: 10 }}>
-              <button className="cm-btn" onClick={() => router.push(`/${locale}`)}
-                style={{ padding: '4px 16px' }}>
-                ← {t('categories.backToCategories')}
-              </button>
-            </div>
             <h1>{category.icon} {name}</h1>
             <p className="text-gray-600 mb-6">{desc}</p>
 

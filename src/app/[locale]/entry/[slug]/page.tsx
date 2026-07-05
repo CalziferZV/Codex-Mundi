@@ -30,11 +30,14 @@ export default function EntryPage() {
         <div className="cm-body">
           <Sidebar locale={locale} router={router} t={t} />
           <main className="cm-main">
-            <div className="cm-content-box">
-              <h1>{locale === 'es' ? 'Entrada no encontrada' : 'Entry not found'}</h1>
-              <button className="cm-btn" onClick={() => router.push(`/${locale}`)}>
+            <div style={{ marginBottom: 4 }}>
+              <button className="cm-btn" onClick={() => router.push(`/${locale}`)}
+                style={{ padding: '4px 16px' }}>
                 ← {t('common.back')}
               </button>
+            </div>
+            <div className="cm-content-box">
+              <h1>{locale === 'es' ? 'Entrada no encontrada' : 'Entry not found'}</h1>
             </div>
           </main>
         </div>
@@ -60,20 +63,23 @@ export default function EntryPage() {
       <div className="cm-body">
         <Sidebar locale={locale} router={router} t={t} />
         <main className="cm-main">
+          <div style={{ marginBottom: 4 }}>
+            <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}
+              style={{ padding: '4px 16px' }}>
+              ← {t('entry.backToCategory')}
+            </button>
+          </div>
           <div className="cm-content-box">
-            <div style={{ textAlign: 'center', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-              <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}
-                style={{ padding: '4px 16px' }}>
-                ← {t('entry.backToCategory')}
-              </button>
+            <div style={{ marginBottom: 10 }}>
               {parentCategory && (
                 <span className="cm-meta">
-                  / <a className="cm-link" onClick={() => router.push(`/${locale}/categories/${parentCategory.slug}`)}>
+                  <a className="cm-link" onClick={() => router.push(`/${locale}/categories/${parentCategory.slug}`)}>
                     {parentCatName}
                   </a>
+                  {' / '}
                 </span>
               )}
-              <span className="cm-meta">/ {catName}</span>
+              <span className="cm-meta">{catName}</span>
             </div>
 
             <h1>{title}</h1>
