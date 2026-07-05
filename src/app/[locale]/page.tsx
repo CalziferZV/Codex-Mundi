@@ -54,6 +54,9 @@ export default function HomePage() {
   useEffect(() => {
     const idx = Math.floor(Math.random() * seedData.entries.length)
     setRandomEntry(seedData.entries[idx])
+    if (localStorage.getItem('codex_intro_done') === 'true') {
+      setPhase('library')
+    }
   }, [])
 
   const dict = getDictionary(locale)
@@ -78,7 +81,10 @@ export default function HomePage() {
   }
 
   if (phase === 'disclaimer') {
-    return <DisclaimerModal onAccept={() => setPhase('library')} locale={locale} dict={dict} />
+    return <DisclaimerModal onAccept={() => {
+      localStorage.setItem('codex_intro_done', 'true')
+      setPhase('library')
+    }} locale={locale} dict={dict} />
   }
 
   return (
