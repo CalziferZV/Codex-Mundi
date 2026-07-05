@@ -12,6 +12,7 @@ export default function AdminGate({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
+  const [checking, setChecking] = useState(false)
 
   useEffect(() => {
     if (isAdminAuthenticated()) {
@@ -20,9 +21,12 @@ export default function AdminGate({ children }: { children: React.ReactNode }) {
     setLoading(false)
   }, [])
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setError('')
-    if (verifyAdminPassword(password)) {
+    setChecking(true)
+    const valid = await verifyAdminPassword(password)
+    setChecking(false)
+    if (valid) {
       setAdminAuthenticated()
       setAuthorized(true)
     } else {
@@ -90,17 +94,21 @@ export default function AdminGate({ children }: { children: React.ReactNode }) {
           />
           <button
             onClick={handleSubmit}
+            disabled={checking}
             style={{
               border: '1px solid #a09a8c',
-              background: '#8b4513',
+              background: checking ? '#999' : '#8b4513',
               color: 'white',
               padding: '6px 20px',
               fontFamily: '"Courier New", monospace',
               fontSize: '13px',
-              cursor: 'pointer',
+              cursor: checking ? 'not-allowed' : 'pointer',
             }}
           >
-            {locale === 'es' ? 'Entrar' : 'Enter'}
+            {checking
+              ? (locale === 'es' ? 'Verificando...' : 'Checking...')
+              : (locale === 'es' ? 'Entrar' : 'Enter')
+            }
           </button>
           <p style={{ marginTop: '16px' }}>
             <a

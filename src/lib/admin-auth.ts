@@ -1,7 +1,15 @@
-const ADMIN_PASSWORD = 'CodexMundi2026'
-
-export function verifyAdminPassword(password: string): boolean {
-  return password === ADMIN_PASSWORD
+export async function verifyAdminPassword(password: string): Promise<boolean> {
+  try {
+    const res = await fetch('/api/auth/verify-admin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+    const data = await res.json()
+    return data.valid === true
+  } catch {
+    return false
+  }
 }
 
 export function isAdminAuthenticated(): boolean {
