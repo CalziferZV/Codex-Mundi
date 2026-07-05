@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
@@ -28,20 +28,50 @@ const realityColors: Record<string, string> = {
 
 type Phase = 'splash' | 'disclaimer' | 'library'
 
+function XpPanel({ title, defaultOpen, children }: { title: string; defaultOpen: boolean; children: React.ReactNode }) {
+  const [open, setOpen] = useState(defaultOpen)
+  return (
+    <div className="cm-content-box">
+      <div className="cm-panel-header" onClick={() => setOpen(!open)}>
+        <h1>{title}</h1>
+        <span className="cm-panel-toggle">{open ? '−' : '+'}</span>
+      </div>
+      {open && <div style={{ marginTop: 12 }}>{children}</div>}
+    </div>
+  )
+}
+
 export default function HomePage() {
   const params = useParams()
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const [phase, setPhase] = useState<Phase>('splash')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [randomEntry, setRandomEntry] = useState<typeof seedData.entries[0] | null>(null)
+  const [dismissNotice, setDismissNotice] = useState(false)
+  const [expandedCat, setExpandedCat] = useState<string | null>(null)
+
+  useEffect(() => {
+    const idx = Math.floor(Math.random() * seedData.entries.length)
+    setRandomEntry(seedData.entries[idx])
+  }, [])
 
   const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
   const rootCategories = seedData.categories.filter(c => !c.parentId)
-  const recentEntries = [...seedData.entries].slice(0, 4)
+  const totalEntries = seedData.entries.length
+  const totalCategories = seedData.categories.length
+  const totalSubsections = seedData.subsections.length
 
   const getEntryCount = (categoryId: string) =>
     seedData.entries.filter(e => e.categoryId === categoryId).length
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/${locale}/search?q=${encodeURIComponent(searchQuery.trim())}`)
+    }
+  }
 
   if (phase === 'splash') {
     return <SplashScreen onComplete={() => setPhase('disclaimer')} locale={locale} dict={dict} />
@@ -58,60 +88,181 @@ export default function HomePage() {
         <Sidebar locale={locale} router={router} t={t} />
 
         <main className="cm-main">
-          <div className="cm-content-box">
-            <h1>{t('site.title')}</h1>
-            <p className="mt-2" style={{ fontSize: 13, color: '#444' }}>{t('site.subtitle')}</p>
-            <p style={{ fontSize: 11, color: '#666', marginTop: 4 }}>{t('site.description')}</p>
-
-            <div className="cm-stats">
-              <div className="cm-stat">
-                <div className="cm-stat-number">{seedData.entries.length}</div>
-                <div className="cm-stat-label">{t('home.totalEntries')}</div>
-              </div>
-              <div className="cm-stat">
-                <div className="cm-stat-number">{seedData.categories.length}</div>
-                <div className="cm-stat-label">{locale === 'es' ? 'categorías' : 'categories'}</div>
-              </div>
-              <div className="cm-stat">
-                <div className="cm-stat-number">{seedData.subsections.length}</div>
-                <div className="cm-stat-label">{locale === 'es' ? 'subsecciones' : 'subsections'}</div>
-              </div>
-            </div>
+          {/* Breadcrumb */}
+          <div className="cm-breadcrumb">
+            <a onClick={() => router.push(`/${locale}`)}>{t('site.title')}</a>
+            <span>▸</span>
+            <span>{locale === 'es' ? 'Inicio' : 'Home'}</span>
           </div>
 
-          <div className="cm-content-box">
-            <h1>{locale === 'es' ? 'Explorar categorías' : 'Browse categories'}</h1>
+          {/* Quick Actions */}
+          <div className="cm-quick-actions">
+            <button className="cm-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              {locale === 'es' ? '⬆ Inicio' : '⬆ Top'}
+            </button>
+            <button className="cm-btn" onClick={() => {
+              const all = seedData.entries
+              const r = all[Math.floor(Math.random() * all.length)]
+              router.push(`/${locale}/entry/${r.slug}`)
+            }}>
+              {locale === 'es' ? '🎲 Aleatorio' : '🎲 Random'}
+            </button>
+            <button className="cm-btn" onClick={() => {
+              const last = [...seedData.entries].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
+              router.push(`/${locale}/entry/${last.slug}`)
+            }}>
+              {locale === 'es' ? '🕐 Última' : '🕐 Latest'}
+            </button>
+            <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/history`)}>
+              {locale === 'es' ? '📜 Historia' : '📜 History'}
+            </button>
+          </div>
+
+          {/* Search on page */}
+          <div className="cm-search-page">
+            <input
+              type="text"
+              placeholder={t('search.placeholder')}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            />
+            <button onClick={handleSearch}>{t('search.title')}</button>
+          </div>
+
+          {/* Notification */}
+          {!dismissNotice && (
+            <div className="cm-notification">
+              <span>
+                {locale === 'es'
+                  ? `📢 Codex Mundi contiene ${totalEntries} entradas, ${totalCategories} categorías y ${totalSubsections} subsecciones. ¡Explora y contribuye!`
+                  : `📢 Codex Mundi contains ${totalEntries} entries, ${totalCategories} categories, and ${totalSubsections} subsections. Explore and contribute!`}
+              </span>
+              <button className="cm-notification-close" onClick={() => setDismissNotice(true)}>✕</button>
+            </div>
+          )}
+
+          {/* Panel 1: Welcome + Stats + Progress */}
+          <XpPanel title={locale === 'es' ? 'Bienvenido a Codex Mundi' : 'Welcome to Codex Mundi'} defaultOpen={true}>
+            <p style={{ fontSize: 12, color: '#555', marginBottom: 4 }}>{t('site.subtitle')}</p>
+            <p style={{ fontSize: 11, color: '#666', marginBottom: 12 }}>{t('site.description')}</p>
+
+            <div className="cm-stats">
+              <div className="cm-stat"><div className="cm-stat-number">{totalEntries}</div><div className="cm-stat-label">{t('home.totalEntries')}</div></div>
+              <div className="cm-stat"><div className="cm-stat-number">{totalCategories}</div><div className="cm-stat-label">{locale === 'es' ? 'categorías' : 'categories'}</div></div>
+              <div className="cm-stat"><div className="cm-stat-number">{totalSubsections}</div><div className="cm-stat-label">{locale === 'es' ? 'subsecciones' : 'subsections'}</div></div>
+            </div>
+
+            <div className="cm-progress-wrap">
+              <div className="cm-progress-label">
+                {locale === 'es' ? 'Progreso del archivo' : 'Archive progress'}
+              </div>
+              <div className="cm-progress-bar">
+                {(() => {
+                  const target = 350
+                  const pct = Math.min(Math.round((totalEntries / target) * 100), 100)
+                  return (
+                    <div className="cm-progress-fill" style={{ width: `${pct}%` }}>
+                      <div className="cm-progress-text">{pct}%</div>
+                    </div>
+                  )
+                })()}
+                <div className="cm-progress-text" style={{ color: '#333' }}>
+                  {totalEntries}/{locale === 'es' ? '350 meta' : '350 target'}
+                </div>
+              </div>
+            </div>
+          </XpPanel>
+
+          {/* Panel 2: Categories with expand */}
+          <XpPanel title={locale === 'es' ? 'Explorar categorías' : 'Browse categories'} defaultOpen={true}>
             <div className="cm-grid-2">
               {rootCategories.map((cat) => {
                 const name = locale === 'es' ? cat.name_es : cat.name_en
                 const desc = locale === 'es' ? cat.description_es : cat.description_en
                 const subCats = seedData.categories.filter(c => c.parentId === cat.id)
                 const entryCount = getEntryCount(cat.id) + subCats.reduce((s, c) => s + getEntryCount(c.id), 0)
+                const isExpanded = expandedCat === cat.id
                 return (
-                  <div
-                    key={cat.id}
-                    className="cm-card"
-                    onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
-                  >
-                    <div className="cm-card-title">{cat.icon} {name}</div>
-                    <div className="cm-card-excerpt">{truncate(desc, 120)}</div>
-                    <div className="cm-meta mt-1">
-                      {subCats.length} subcategorías · {entryCount} {t('home.totalEntries')}
+                  <div key={cat.id}>
+                    <div
+                      className="cm-card"
+                      onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
+                    >
+                      <div className="cm-card-title">{cat.icon} {name}</div>
+                      <div className="cm-card-excerpt">{truncate(desc, 120)}</div>
+                      <div className="cm-meta mt-1" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>{subCats.length} {locale === 'es' ? 'subcategorías' : 'subcats'} · {entryCount} {t('home.totalEntries')}</span>
+                        {subCats.length > 0 && (
+                          <span
+                            className="cm-link"
+                            style={{ fontSize: 10 }}
+                            onClick={(e) => { e.stopPropagation(); setExpandedCat(isExpanded ? null : cat.id) }}
+                          >
+                            {isExpanded ? '▲ colapsar' : '▼ ver'}
+                          </span>
+                        )}
+                      </div>
                     </div>
+                    {isExpanded && (
+                      <div className="cm-cat-expand">
+                        {subCats.map((sub) => {
+                          const subName = locale === 'es' ? sub.name_es : sub.name_en
+                          const subCount = getEntryCount(sub.id)
+                          return (
+                            <div
+                              key={sub.id}
+                              className="cm-cat-expand-item"
+                              onClick={() => router.push(`/${locale}/categories/${sub.slug}`)}
+                            >
+                              {sub.icon} {subName} ({subCount})
+                            </div>
+                          )
+                        })}
+                        {seedData.entries.filter(e => e.categoryId === cat.id).map((entry) => {
+                          const title = locale === 'es' ? entry.title_es : entry.title_en
+                          return (
+                            <div
+                              key={entry.id}
+                              className="cm-cat-expand-item"
+                              style={{ paddingLeft: 16 }}
+                              onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}
+                            >
+                              📄 {title}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
                   </div>
                 )
               })}
             </div>
-            <hr className="cm-divider" />
-            <div className="cm-meta">
-              {locale === 'es'
-                ? 'Haz clic en cualquier categoría para explorar su contenido.'
-                : 'Click any category to explore its content.'}
-            </div>
-          </div>
+          </XpPanel>
 
-          <div className="cm-content-box">
-            <h1>{t('home.recentEntries')}</h1>
+          {/* Random Entry Card */}
+          {randomEntry && (
+            <div className="cm-random-card">
+              <div className="cm-random-card-icon">📖</div>
+              <div className="cm-random-card-body">
+                <div className="cm-random-card-title" onClick={() => router.push(`/${locale}/entry/${randomEntry.slug}`)}>
+                  {locale === 'es' ? randomEntry.title_es : randomEntry.title_en}
+                </div>
+                <div className="cm-random-card-excerpt">
+                  {truncate(locale === 'es' ? randomEntry.excerpt_es : randomEntry.excerpt_en, 200)}
+                </div>
+                <div className="cm-meta" style={{ marginTop: 4 }}>
+                  <span className="cm-tag">{getNestedValue(dict, `reality.${randomEntry.realityStatus}`)}</span>
+                  <span style={{ marginLeft: 8 }}>
+                    {locale === 'es' ? 'Entrada aleatoria' : 'Random entry'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Panel 3: Recent Entries */}
+          <XpPanel title={t('home.recentEntries')} defaultOpen={true}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid #d4d0c8' }}>
@@ -127,24 +278,19 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                {recentEntries.map((entry) => {
+                {[...seedData.entries].slice(0, 6).map((entry) => {
                   const title = locale === 'es' ? entry.title_es : entry.title_en
                   const excerpt = locale === 'es' ? entry.excerpt_es : entry.excerpt_en
                   const cat = seedData.categories.find(c => c.id === entry.categoryId)
-                  const catName = cat ? (locale === 'es' ? cat.name_es : cat.name_en) : ''
                   return (
-                    <tr
-                      key={entry.id}
-                      className="cm-card"
-                      style={{ cursor: 'pointer', borderBottom: '1px solid #ece9d8' }}
-                      onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}
-                    >
+                    <tr key={entry.id} className="cm-card" style={{ cursor: 'pointer', borderBottom: '1px solid #ece9d8' }}
+                        onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}>
                       <td style={{ padding: '8px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: 12 }}>{title}</div>
                         <div className="cm-card-excerpt">{truncate(excerpt, 100)}</div>
                       </td>
                       <td style={{ padding: '8px', fontSize: 11, color: '#666', verticalAlign: 'top' }}>
-                        {cat?.icon} {catName}
+                        {cat?.icon} {cat ? (locale === 'es' ? cat.name_es : cat.name_en) : ''}
                       </td>
                       <td style={{ padding: '8px', verticalAlign: 'top' }}>
                         <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
@@ -154,33 +300,74 @@ export default function HomePage() {
                 })}
               </tbody>
             </table>
-          </div>
+          </XpPanel>
 
-          <div className="cm-content-box">
-            <h1>{locale === 'es' ? 'Clasificación por realidad' : 'Reality classification'}</h1>
+          {/* Panel 4: Knowledge Map */}
+          <XpPanel title={locale === 'es' ? '🗺️ Mapa del conocimiento' : '🗺️ Knowledge map'} defaultOpen={false}>
+            <div className="cm-map">
+              {rootCategories.map((cat) => {
+                const catName = locale === 'es' ? cat.name_es : cat.name_en
+                const subCats = seedData.categories.filter(c => c.parentId === cat.id)
+                const catEntries = seedData.entries.filter(e => {
+                  const ids = [cat.id, ...subCats.map(c => c.id)]
+                  return ids.includes(e.categoryId)
+                })
+                return (
+                  <div key={cat.id} className="cm-map-node">
+                    <div className="cm-map-node-title" onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}>
+                      {cat.icon} {catName} ({catEntries.length})
+                    </div>
+                    <div className="cm-map-children">
+                      {subCats.map((sub) => {
+                        const subName = locale === 'es' ? sub.name_es : sub.name_en
+                        const subEntries = seedData.entries.filter(e => e.categoryId === sub.id)
+                        return (
+                          <div key={sub.id} className="cm-map-child"
+                               onClick={() => router.push(`/${locale}/categories/${sub.slug}`)}>
+                            {sub.icon} {subName} ({subEntries.length})
+                          </div>
+                        )
+                      })}
+                      {catEntries.filter(e => e.categoryId === cat.id).map((entry) => {
+                        const title = locale === 'es' ? entry.title_es : entry.title_en
+                        return (
+                          <div key={entry.id} className="cm-map-child"
+                               onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}>
+                            📄 {title}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </XpPanel>
+
+          {/* Panel 5: Reality Legend */}
+          <XpPanel title={locale === 'es' ? 'Clasificación por realidad' : 'Reality classification'} defaultOpen={false}>
             <p className="cm-meta" style={{ marginBottom: 8 }}>
               {locale === 'es'
-                ? 'Cada entrada está clasificada según su nivel de verificabilidad:'
-                : 'Each entry is classified according to its level of verifiability:'}
+                ? 'Cada entrada está clasificada según su nivel de verificabilidad. Pasa el ratón para más detalles.'
+                : 'Each entry is classified verifiability level. Hover for details.'}
             </p>
             <div className="cm-legend">
               {Object.entries(realityColors).map(([key, color]) => (
-                <div key={key} className="cm-legend-item">
+                <div key={key} className="cm-legend-item" title={locale === 'es'
+                  ? realityDescriptions.es[key]
+                  : realityDescriptions.en[key]
+                }>
                   <div className="cm-legend-dot" style={{ background: color }} />
                   <div>
-                    <div className="cm-legend-label">
-                      {getNestedValue(dict, `reality.${key}`)}
-                    </div>
-                    <div className="cm-legend-desc">
-                      {locale === 'es'
-                        ? realityDescriptions.es[key]
-                        : realityDescriptions.en[key]}
+                    <div className="cm-legend-label">{getNestedValue(dict, `reality.${key}`)}</div>
+                    <div className="cm-legend-desc" style={{ fontSize: 9, color: '#999' }}>
+                      {locale === 'es' ? realityDescriptionsShort.es[key] : realityDescriptionsShort.en[key]}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </XpPanel>
 
           <Footer locale={locale} t={t} />
         </main>
@@ -214,5 +401,32 @@ const realityDescriptions: Record<string, Record<string, string>> = {
     fiction: 'From literature, art, or fiction',
     philosophical: 'No claim to factual truth',
     unclassified: 'Pending categorization',
+  },
+}
+
+const realityDescriptionsShort: Record<string, Record<string, string>> = {
+  es: {
+    historical: 'Evidencia documental',
+    scientific: 'Método científico',
+    hypothesis: 'No confirmada',
+    theoretical: 'Sin validación',
+    mythological: 'Tradición oral',
+    speculative: 'Sin base sólida',
+    conspiratorial: 'Contraoficial',
+    fiction: 'Ficción / arte',
+    philosophical: 'Reflexión',
+    unclassified: 'Sin clasificar',
+  },
+  en: {
+    historical: 'Documentary evidence',
+    scientific: 'Scientific method',
+    hypothesis: 'Unconfirmed',
+    theoretical: 'No validation',
+    mythological: 'Oral tradition',
+    speculative: 'No solid basis',
+    conspiratorial: 'Counter-official',
+    fiction: 'Fiction / art',
+    philosophical: 'Reflection',
+    unclassified: 'Unclassified',
   },
 }

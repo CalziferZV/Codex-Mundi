@@ -421,6 +421,254 @@ body {
   .cm-search-bar input { width: 120px; }
 }
 
+/* ===== COLLAPSIBLE PANEL ===== */
+.cm-panel-header {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cm-panel-toggle {
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.7);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+.cm-panel-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ===== QUICK ACTIONS ===== */
+.cm-quick-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cm-quick-actions .cm-btn {
+  font-size: 11px;
+  padding: 3px 12px;
+  min-width: auto;
+}
+
+/* ===== SEARCH ON PAGE ===== */
+.cm-search-page {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.cm-search-page input {
+  flex: 1;
+  height: 28px;
+  font-size: 13px;
+  padding: 3px 10px;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+  background: #ffffff;
+  color: #000000;
+  font-family: Tahoma, sans-serif;
+  outline: none;
+}
+
+.cm-search-page input:focus {
+  border-color: #316ac5;
+}
+
+.cm-search-page button {
+  height: 32px;
+  min-width: 80px;
+  font-size: 12px;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  background: #d4d0c8;
+  font-family: Tahoma, sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.cm-search-page button:hover {
+  background: #e8e4dc;
+}
+
+.cm-search-page button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+/* ===== PROGRESS BAR ===== */
+.cm-progress-wrap {
+  margin: 12px 0 4px;
+}
+
+.cm-progress-label {
+  font-size: 10px;
+  color: #666;
+  font-family: Tahoma, sans-serif;
+  margin-bottom: 2px;
+}
+
+.cm-progress-bar {
+  height: 18px;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  position: relative;
+  overflow: hidden;
+}
+
+.cm-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3c9c30, #4bbc3e);
+  transition: width 0.6s ease;
+  position: relative;
+}
+
+.cm-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+}
+
+.cm-progress-text {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #000;
+  font-family: Tahoma, sans-serif;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* ===== NOTIFICATION BALLOON ===== */
+.cm-notification {
+  background: #fffde7;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  color: #555;
+  font-family: Tahoma, sans-serif;
+}
+
+.cm-notification-close {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: #999;
+  border: none;
+  background: none;
+  font-family: Tahoma, sans-serif;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.cm-notification-close:hover {
+  color: #333;
+}
+
+/* ===== RANDOM CARD ===== */
+.cm-random-card {
+  background: #f0f4f8;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cm-random-card-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.cm-random-card-body {
+  flex: 1;
+}
+
+.cm-random-card-title {
+  font-weight: bold;
+  font-size: 13px;
+  color: #0000cc;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.cm-random-card-title:hover {
+  text-decoration: underline;
+  color: #ff0000;
+}
+
+.cm-random-card-excerpt {
+  font-size: 11px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* ===== BREADCRUMB ===== */
+.cm-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: #666;
+  font-family: Tahoma, sans-serif;
+}
+
+.cm-breadcrumb a {
+  color: #0000cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cm-breadcrumb a:hover {
+  color: #ff0000;
+}
+
+/* ===== CATEGORY EXPAND ===== */
+.cm-cat-expand {
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: #f8f8f4;
+  border: 1px solid #d4d0c8;
+  font-size: 11px;
+}
+
+.cm-cat-expand-item {
+  cursor: pointer;
+  padding: 2px 4px;
+  color: #0000cc;
+}
+
+.cm-cat-expand-item:hover {
+  text-decoration: underline;
+  color: #ff0000;
+}
+
 /* ===== SPLASH SCREEN (XP) ===== */
 .splash-xp {
   position: fixed;
