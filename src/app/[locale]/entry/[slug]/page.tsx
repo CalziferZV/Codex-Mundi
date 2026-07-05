@@ -61,8 +61,9 @@ export default function EntryPage() {
         <Sidebar locale={locale} router={router} t={t} />
         <main className="cm-main">
           <div className="cm-content-box">
-            <div className="cm-breadcrumb">
-              <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}>
+            <div style={{ textAlign: 'center', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+              <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}
+                style={{ padding: '4px 16px' }}>
                 ← {t('entry.backToCategory')}
               </button>
               {parentCategory && (
