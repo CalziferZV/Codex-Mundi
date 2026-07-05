@@ -44,7 +44,7 @@ export default function SplashScreen({ onComplete, locale, dict }: SplashScreenP
           transition: 'all 1.5s ease',
           marginBottom: 20,
         }}>
-          <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 72, display: 'block', margin: '0 auto' }} />
+          <img src="/logo-header.png" alt="Codex Mundi" style={{ width: '80%', maxWidth: 600, display: 'block', margin: '0 auto' }} />
         </div>
 
         <div style={{
