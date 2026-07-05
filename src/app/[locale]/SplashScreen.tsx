@@ -53,7 +53,7 @@ export default function SplashScreen({ onComplete, locale, dict }: SplashScreenP
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.5)',
             fontSize: 36,
           }}>
-            📖
+            <img src="/logo-header.png" alt="Codex Mundi" style={{ width: 50, height: 50, objectFit: 'contain' }} />
           </div>
         </div>
 
