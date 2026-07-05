@@ -354,20 +354,18 @@ export default function HomePage() {
           <XpPanel title={locale === 'es' ? 'Clasificación por realidad' : 'Reality classification'} defaultOpen={false}>
             <p className="cm-meta" style={{ marginBottom: 8 }}>
               {locale === 'es'
-                ? 'Cada entrada está clasificada según su nivel de verificabilidad. Pasa el ratón para más detalles.'
-                : 'Each entry is classified verifiability level. Hover for details.'}
+                ? 'Cada entrada está clasificada según su nivel de verificabilidad. Pasa el ratón sobre cada una para más detalles.'
+                : 'Each entry is classified by verifiability level. Hover each for details.'}
             </p>
             <div className="cm-legend">
               {Object.entries(realityColors).map(([key, color]) => (
-                <div key={key} className="cm-legend-item" title={locale === 'es'
-                  ? realityDescriptions.es[key]
-                  : realityDescriptions.en[key]
-                }>
+                <div key={key} className="cm-legend-item"
+                  title={locale === 'es' ? realityDescriptions.es[key] : realityDescriptions.en[key]}>
                   <div className="cm-legend-dot" style={{ background: color }} />
                   <div>
                     <div className="cm-legend-label">{getNestedValue(dict, `reality.${key}`)}</div>
-                    <div className="cm-legend-desc" style={{ fontSize: 9, color: '#999' }}>
-                      {locale === 'es' ? realityDescriptionsShort.es[key] : realityDescriptionsShort.en[key]}
+                    <div className="cm-legend-desc">
+                      {locale === 'es' ? realityDescriptions.es[key] : realityDescriptions.en[key]}
                     </div>
                   </div>
                 </div>
