@@ -1,108 +1,64 @@
 {
-  "site": {
-    "title": "Codex Mundi",
-    "subtitle": "The Library of Alexandria of Human Knowledge",
-    "description": "A compendium of all human knowledge, real and speculative",
-    "disclaimer": "Nothing written here should be taken as absolute truth. This archive of human knowledge compiles information from multiple sources, including theories, hypotheses, myths, legends, and speculations. Everything is open to improvement, contrast, and correction. Knowledge is a living organism that evolves with every contribution.",
-    "splashPhrases": [
-      "Before books existed, there was the word. Before the word, there was the idea.",
-      "All the knowledge of the world, in one place.",
-      "The Library of Alexandria reborn in pixels.",
-      "The real and the imaginary, the certain and the doubtful, all have a place here.",
-      "An archive of all that was, is, could be, or never was.",
-      "Knowledge is not truth, it is question."
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdate": "Last updated: July 2026",
+    "intro": "At Codex Mundi we take your privacy seriously. This policy explains what data we collect, how we use it, and what rights you have.",
+    "dataWeCollect": "Data we collect",
+    "dataWeCollectDesc": "When you browse Codex Mundi without logging in, we collect no personal data. We only store a language cookie (NEXT_LOCALE) to remember your language preference, and data in your browser's localStorage to remember you've seen the welcome screen. If you create an account, we collect: your email address, username, and encrypted password. You may optionally add an avatar and biography.",
+    "howWeUse": "How we use your data",
+    "howWeUseDesc": "Your email is used only for login. Your username is displayed next to your contributions. We do not share your data with third parties. We do not use analytics, trackers, or ads.",
+    "cookies": "Cookies",
+    "cookiesDesc": "We use a single cookie: NEXT_LOCALE, to remember your language. When you log in, Supabase may add authentication cookies necessary for the site to function. You can block cookies from your browser settings, though some features may not work.",
+    "yourRights": "Your rights",
+    "yourRightsDesc": "You may request at any time: access to your data, rectification, deletion (right to be forgotten), and data export. To exercise your rights, write to carlosrebollar09@gmail.com.",
+    "thirdParty": "Third-party services",
+    "thirdPartyDesc": "Codex Mundi is hosted on Vercel. User data is stored on Supabase. Both providers comply with GDPR. We do not use Google Analytics, Facebook Pixel, or any other tracking services.",
+    "changes": "Changes to this policy",
+    "changesDesc": "We will notify any significant changes to this policy via a notice on the website."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdate": "Last updated: July 2026",
+    "intro": "By using Codex Mundi, you agree to the following terms.",
+    "contentNature": "Nature of the content",
+    "contentNatureDesc": "Codex Mundi is a neutral archive of human knowledge. It compiles information from multiple sources, including theories, hypotheses, myths, legends, and speculations. NOTHING written here should be taken as absolute truth. Each entry is classified according to its reality status. It is the reader's responsibility to critically evaluate the content.",
+    "userConduct": "User conduct",
+    "userConductDesc": "Do not use Codex Mundi to: spread false information as verified fact, harass other users, violate copyright, or engage in illegal activities.",
+    "contributions": "Contributions",
+    "contributionsDesc": "By contributing content, you grant Codex Mundi a license to store, display, and distribute your contribution. You are responsible for ensuring your contribution does not infringe third-party rights.",
+    "disclaimer": "Limitation of liability",
+    "disclaimerDesc": "Codex Mundi is not responsible for how users use the content. The archive is a reflection of human knowledge, not a source of absolute truth. The administrator reserves the right to moderate, edit, or delete content that violates these terms.",
+    "termination": "Termination",
+    "terminationDesc": "We may suspend accounts that violate these terms without prior notice."
+  },
+  "legal": {
+    "title": "Legal Notice",
+    "responsible": "Site responsible",
+    "responsibleDesc": "Carlos Rebollar (CalziferZV)",
+    "contact": "Contact: carlosrebollar09@gmail.com",
+    "purpose": "Codex Mundi is a personal non-profit project with educational, cultural, and knowledge preservation purposes.",
+    "intellectualProperty": "Intellectual property",
+    "intellectualPropertyDesc": "The project's source code is open. The archive content is offered under a Creative Commons BY-NC-SA 4.0 license, unless otherwise indicated. Trademarks and logos mentioned belong to their respective owners."
+  },
+  "cookiesPolicy": {
+    "title": "Cookie Policy",
+    "intro": "Codex Mundi uses minimal and exclusively functional cookies.",
+    "cookieList": "Cookie list",
+    "items": [
+      {
+        "name": "NEXT_LOCALE",
+        "purpose": "Remember your language preference",
+        "type": "Functional (technical)",
+        "duration": "1 year"
+      },
+      {
+        "name": "sb-*-auth-token",
+        "purpose": "Session authentication (only if you log in)",
+        "type": "Functional (technical)",
+        "duration": "Session"
+      }
     ],
-    "splashSubtitle": "Click to enter the knowledge archive",
-    "enter": "Enter Codex Mundi"
-  },
-  "nav": {
-    "home": "Home",
-    "categories": "Categories",
-    "search": "Search",
-    "admin": "Admin",
-    "login": "Log in",
-    "register": "Register",
-    "logout": "Log out",
-    "start": "Start",
-    "contributions": "Contributions",
-    "entries": "Entries"
-  },
-  "home": {
-    "welcome": "Welcome to Codex Mundi",
-    "explore": "Explore the categories to discover knowledge",
-    "recentEntries": "Recent entries",
-    "allCategories": "All categories",
-    "totalEntries": "total entries",
-    "enter": "ENTER CODEX MUNDI"
-  },
-  "categories": {
-    "title": "Categories",
-    "noEntries": "No entries in this category",
-    "backToCategories": "Back to categories"
-  },
-  "entry": {
-    "realityStatus": "Reality status",
-    "subsections": "Subsections",
-    "backToCategory": "Back to category",
-    "source": "Source",
-    "contributions": "Contributions",
-    "suggestEdit": "Suggest edit",
-    "editedBy": "Edited by",
-    "lastUpdated": "Last updated"
-  },
-  "search": {
-    "title": "Search Codex Mundi",
-    "placeholder": "Type your search...",
-    "noResults": "No results found",
-    "resultsFor": "Results for",
-    "searchIn": "Search the entire archive"
-  },
-  "auth": {
-    "loginTitle": "Log in",
-    "registerTitle": "Create account",
-    "email": "Email",
-    "password": "Password",
-    "username": "Username",
-    "submitLogin": "Enter",
-    "submitRegister": "Register",
-    "noAccount": "Don't have an account?",
-    "hasAccount": "Already have an account?",
-    "registerLink": "Register here",
-    "loginLink": "Log in here"
-  },
-  "admin": {
-    "dashboard": "Admin dashboard",
-    "manageEntries": "Manage entries",
-    "manageCategories": "Manage categories",
-    "manageContributions": "Manage contributions",
-    "pendingContributions": "Pending contributions",
-    "createEntry": "Create entry",
-    "createCategory": "Create category",
-    "edit": "Edit",
-    "delete": "Delete",
-    "approve": "Approve",
-    "reject": "Reject"
-  },
-  "reality": {
-    "historical": "Historical verified",
-    "scientific": "Scientific",
-    "hypothesis": "Hypothesis",
-    "theoretical": "Theoretical",
-    "mythological": "Mythological",
-    "speculative": "Speculative",
-    "conspiratorial": "Conspiratorial",
-    "fiction": "Fiction",
-    "philosophical": "Philosophical",
-    "unclassified": "Unclassified"
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Error",
-    "save": "Save",
-    "cancel": "Cancel",
-    "close": "Close",
-    "back": "Back",
-    "confirm": "Confirm",
-    "accept": "Accept and enter"
+    "consent": "We do not need prior consent because we only use technical/functional cookies, which are exempt under the European ePrivacy directive.",
+    "manage": "You can manage or delete cookies from your browser settings."
   }
 }

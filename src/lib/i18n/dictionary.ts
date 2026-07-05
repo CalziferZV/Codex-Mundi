@@ -2,8 +2,8 @@ import type { Locale } from './config'
 import esDict from '@/messages/es.json'
 import enDict from '@/messages/en.json'
 
-type DictionaryValue = string | string[] | Dictionary
-type Dictionary = {
+export type DictionaryValue = string | string[] | Dictionary | Dictionary[]
+export type Dictionary = {
   [key: string]: DictionaryValue
 }
 
