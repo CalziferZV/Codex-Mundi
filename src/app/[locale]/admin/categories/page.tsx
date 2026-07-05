@@ -4,7 +4,6 @@ import { useParams, useRouter } from 'next/navigation'
 import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import { seedData } from '@/lib/seed'
 import type { Locale } from '@/lib/i18n/config'
-import AdminGuard from '@/app/[locale]/AdminGuard'
 import Header from '@/app/[locale]/Header'
 import Sidebar from '@/app/[locale]/Sidebar'
 
@@ -16,7 +15,7 @@ export default function AdminCategoriesPage() {
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
   return (
-    <AdminGuard>
+    <>
       <Header locale={locale} router={router} t={t} />
       <div className="cm-body">
         <Sidebar locale={locale} router={router} t={t} />
@@ -44,6 +43,6 @@ export default function AdminCategoriesPage() {
           </div>
         </main>
       </div>
-    </AdminGuard>
+    </>
   )
 }

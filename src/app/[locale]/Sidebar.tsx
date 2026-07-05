@@ -1,9 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { seedData } from '@/lib/seed'
-import { isAdminAuthenticated, adminLogout } from '@/lib/admin-auth'
 
 interface SidebarProps {
   locale: string
@@ -14,17 +12,6 @@ interface SidebarProps {
 export default function Sidebar({ locale, router, t }: SidebarProps) {
   const pathname = usePathname()
   const rootCategories = seedData.categories.filter(c => !c.parentId)
-  const [isAdmin, setIsAdmin] = useState(false)
-
-  useEffect(() => {
-    setIsAdmin(isAdminAuthenticated())
-  }, [pathname])
-
-  const handleLogout = () => {
-    adminLogout()
-    setIsAdmin(false)
-    router.push(`/${locale}`)
-  }
 
   return (
     <aside className="cm-sidebar">
@@ -63,30 +50,6 @@ export default function Sidebar({ locale, router, t }: SidebarProps) {
             </div>
           )
         })}
-
-        {isAdmin && (
-          <>
-            <div className="cm-sidebar-title mt-4">⚙️ Admin</div>
-            <a
-              className={`cm-sidebar-item ${pathname.includes('/admin') ? 'active' : ''}`}
-              onClick={() => router.push(`/${locale}/admin`)}
-            >
-              {t('nav.admin')}
-            </a>
-            <a className="cm-sidebar-item text-red-600" onClick={handleLogout}>
-              {t('nav.logout')}
-            </a>
-          </>
-        )}
-
-        {!isAdmin && (
-          <>
-            <div className="cm-sidebar-title mt-4">{t('nav.contributions')}</div>
-            <a className="cm-sidebar-item" onClick={() => router.push(`/${locale}/auth/login`)}>
-              {t('nav.login')}
-            </a>
-          </>
-        )}
       </div>
     </aside>
   )
