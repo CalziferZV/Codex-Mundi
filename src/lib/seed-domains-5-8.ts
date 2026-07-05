@@ -9,7 +9,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Lugares legendarios, ciudades perdidas, sitios arqueológicos enigmáticos y anomalías geográficas que desafían la explicación convencional.',
     description_en: 'Legendary places, lost cities, enigmatic archaeological sites, and geographical anomalies that defy conventional explanation.',
     icon: '🌍',
-    parentId: null,
+    parentId: 'cat-mysteries',
   },
   {
     id: 'cat-lost-cities',
@@ -59,7 +59,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'El estudio de criaturas legendarias, animales no confirmados por la ciencia y seres del folclore mundial.',
     description_en: 'The study of legendary creatures, animals unconfirmed by science, and beings from world folklore.',
     icon: '🐾',
-    parentId: null,
+    parentId: 'cat-mysteries',
   },
   {
     id: 'cat-cryptids-land',
@@ -109,7 +109,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Objetos antiguos, artefactos tecnológicamente avanzados para su época y reliquias de poder envueltas en misterio.',
     description_en: 'Ancient objects, technologically advanced artifacts for their time, and relics of power shrouded in mystery.',
     icon: '🔶',
-    parentId: null,
+    parentId: 'cat-mysteries',
   },
   {
     id: 'cat-ooparts',
@@ -149,7 +149,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Fenómenos que desafían las leyes conocidas de la física y la naturaleza, incluyendo lo psíquico, fantasmal, ovni y esotérico.',
     description_en: 'Phenomena that defy known laws of physics and nature, including psychic, ghostly, UFO, and esoteric phenomena.',
     icon: '👻',
-    parentId: null,
+    parentId: 'cat-mysteries',
   },
   {
     id: 'cat-psychic-phenomena',

@@ -113,7 +113,7 @@ export const seedData = {
       description_es: 'Estudio científico del universo, los cuerpos celestes y los fenómenos cósmicos.',
       description_en: 'Scientific study of the universe, celestial bodies, and cosmic phenomena.',
       icon: '🌌',
-      parentId: null,
+      parentId: 'cat-science',
     },
     {
       id: 'cat-medicine',
@@ -123,7 +123,7 @@ export const seedData = {
       description_es: 'Ciencia y práctica del diagnóstico, tratamiento y prevención de enfermedades.',
       description_en: 'Science and practice of diagnosing, treating, and preventing diseases.',
       icon: '💊',
-      parentId: null,
+      parentId: 'cat-science',
     },
     {
       id: 'cat-nature',
@@ -133,7 +133,7 @@ export const seedData = {
       description_es: 'Mundo natural, ecosistemas, biodiversidad y fenómenos del medio ambiente.',
       description_en: 'Natural world, ecosystems, biodiversity, and environmental phenomena.',
       icon: '🌿',
-      parentId: null,
+      parentId: 'cat-science',
     },
     {
       id: 'cat-technology',
@@ -153,7 +153,7 @@ export const seedData = {
       description_es: 'Conocimiento oculto, prácticas espirituales secretas y tradiciones herméticas.',
       description_en: 'Hidden knowledge, secret spiritual practices, and hermetic traditions.',
       icon: '🔮',
-      parentId: null,
+      parentId: 'cat-religion',
     },
     {
       id: 'cat-literature',
@@ -163,7 +163,7 @@ export const seedData = {
       description_es: 'Obras escritas, movimientos literarios y autores que han marcado la cultura universal.',
       description_en: 'Written works, literary movements, and authors who have shaped universal culture.',
       icon: '📚',
-      parentId: null,
+      parentId: 'cat-arts',
     },
     {
       id: 'cat-greek-myth',
@@ -233,6 +233,16 @@ export const seedData = {
       description_es: 'Estudio de la mente, el comportamiento humano y los procesos mentales.',
       description_en: 'Study of the mind, human behavior, and mental processes.',
       icon: '🧠',
+      parentId: 'cat-science',
+    },
+    {
+      id: 'cat-mysteries',
+      name_es: 'Misterios y Fenómenos',
+      name_en: 'Mysteries & Phenomena',
+      slug: 'mysteries-phenomena',
+      description_es: 'Fenómenos inexplicables, lugares perdidos, criaturas desconocidas, artefactos enigmáticos y teorías conspirativas.',
+      description_en: 'Unexplained phenomena, lost places, unknown creatures, enigmatic artifacts, and conspiracy theories.',
+      icon: '❓',
       parentId: null,
     },
     ...newCategories58,

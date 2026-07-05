@@ -10,7 +10,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Teorías que explican eventos significativos como resultado de complots secretos orquestados por grupos poderosos.',
     description_en: 'Theories explaining significant events as the result of secret plots orchestrated by powerful groups.',
     icon: '🕵️',
-    parentId: null,
+    parentId: 'cat-mysteries',
   },
   {
     id: 'cat-conspiracy-political',
@@ -62,7 +62,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Figuras que moldearon la historia y la leyenda: gobernantes, científicos, exploradores, artistas y héroes míticos.',
     description_en: 'Figures who shaped history and legend: rulers, scientists, explorers, artists, and mythical heroes.',
     icon: '👑',
-    parentId: null,
+    parentId: 'cat-history',
   },
   {
     id: 'cat-figures-rulers',
@@ -124,7 +124,7 @@ export const newCategories: SeedCategory[] = [
     description_es: 'Estudio del origen y evolución del cosmos, la vida y el ser humano desde perspectivas científicas y filosóficas.',
     description_en: 'Study of the origin and evolution of the cosmos, life, and human beings from scientific and philosophical perspectives.',
     icon: '🌌',
-    parentId: null,
+    parentId: 'cat-science',
   },
   {
     id: 'cat-cosmology-universe',
