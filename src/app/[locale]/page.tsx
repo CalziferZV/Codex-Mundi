@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { DisclaimerModal } from '@/components/retro/DisclaimerModal'
 import { Desktop } from '@/components/retro/Desktop'
@@ -17,14 +17,10 @@ export default function HomePage() {
   const locale = (params.locale as Locale) || 'es'
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false)
   const [showStartMenu, setShowStartMenu] = useState(false)
-  const [dict, setDict] = useState<any>(null)
   const [openWindows, setOpenWindows] = useState<string[]>([])
   const [activeWindow, setActiveWindow] = useState<string | null>(null)
 
-  useEffect(() => {
-    getDictionary(locale).then(setDict)
-  }, [locale])
-
+  const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
   const openWindow = (id: string) => {

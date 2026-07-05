@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Desktop } from '@/components/retro/Desktop'
 import { Taskbar } from '@/components/retro/Taskbar'
@@ -15,19 +14,12 @@ export default function EntryPage() {
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const slug = params.slug as string
-  const [dict, setDict] = useState<any>(null)
-
-  useEffect(() => {
-    getDictionary(locale).then(setDict)
-  }, [locale])
-
+  const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
   const entry = seedData.entries.find(e => e.slug === slug)
   const category = entry ? seedData.categories.find(c => c.id === entry.categoryId) : null
   const subsections = entry ? seedData.subsections.filter(s => s.entryId === entry.id) : []
-
-  if (!dict) return null
 
   if (!entry) {
     return (

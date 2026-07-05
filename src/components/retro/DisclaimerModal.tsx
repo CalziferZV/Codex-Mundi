@@ -7,10 +7,7 @@ import { XpButton } from './XpButton'
 interface DisclaimerModalProps {
   onAccept: () => void
   locale?: string
-  dictionary?: {
-    site: { title: string; subtitle: string; disclaimer: string }
-    common: { accept: string }
-  }
+  dictionary?: Record<string, any>
 }
 
 export function DisclaimerModal({

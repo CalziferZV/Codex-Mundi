@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Desktop } from '@/components/retro/Desktop'
 import { Taskbar } from '@/components/retro/Taskbar'
@@ -15,18 +14,11 @@ export default function CategoryPage() {
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const slug = params.slug as string
-  const [dict, setDict] = useState<any>(null)
-
-  useEffect(() => {
-    getDictionary(locale).then(setDict)
-  }, [locale])
-
+  const dict = getDictionary(locale)
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
   const category = seedData.categories.find(c => c.slug === slug)
   const entries = seedData.entries.filter(e => e.categoryId === category?.id)
-
-  if (!dict) return null
 
   if (!category) {
     return (

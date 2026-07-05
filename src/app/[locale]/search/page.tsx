@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useEffect } from 'react'
+import { Suspense, useState } from 'react'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { Desktop } from '@/components/retro/Desktop'
 import { Taskbar } from '@/components/retro/Taskbar'
@@ -17,12 +17,8 @@ function SearchContent() {
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
   const query = searchParams.get('q') || ''
-  const [dict, setDict] = useState<any>(null)
+  const dict = getDictionary(locale)
   const [searchText, setSearchText] = useState(query)
-
-  useEffect(() => {
-    getDictionary(locale).then(setDict)
-  }, [locale])
 
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
 
@@ -41,8 +37,6 @@ function SearchContent() {
         )
       })
     : []
-
-  if (!dict) return null
 
   return (
     <Desktop>

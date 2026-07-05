@@ -1,16 +1,18 @@
 import type { Locale } from './config'
+import esDict from '@/messages/es.json'
+import enDict from '@/messages/en.json'
 
 type Dictionary = {
   [key: string]: string | { [key: string]: string | Dictionary }
 }
 
-const dictionaries = {
-  es: () => import('@/messages/es.json').then((m) => m.default as Dictionary),
-  en: () => import('@/messages/en.json').then((m) => m.default as Dictionary),
+const dictionaries: Record<Locale, Dictionary> = {
+  es: esDict as Dictionary,
+  en: enDict as Dictionary,
 }
 
-export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  return dictionaries[locale]()
+export function getDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale]
 }
 
 export function getNestedValue(obj: Dictionary, path: string): string {

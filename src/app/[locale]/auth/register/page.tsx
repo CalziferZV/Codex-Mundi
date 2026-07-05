@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Desktop } from '@/components/retro/Desktop'
 import { Taskbar } from '@/components/retro/Taskbar'
@@ -13,18 +13,12 @@ export default function RegisterPage() {
   const params = useParams()
   const router = useRouter()
   const locale = (params.locale as Locale) || 'es'
-  const [dict, setDict] = useState<any>(null)
+  const dict = getDictionary(locale)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
 
-  useEffect(() => {
-    getDictionary(locale).then(setDict)
-  }, [locale])
-
   const t = (path: string) => dict ? getNestedValue(dict, path) : path
-
-  if (!dict) return null
 
   return (
     <div className="flex flex-col h-full">
