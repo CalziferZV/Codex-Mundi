@@ -13,7 +13,7 @@ export default function Header({ locale, router, t }: HeaderProps) {
     <header className="cm-header">
       <div className="cm-header-title">
         <a href={`/${locale}`}>
-          <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 18 }} />
+          <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 22 }} />
         </a>
       </div>
 
