@@ -1,6 +1,8 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { isAdminAuthenticated, adminLogout } from '@/lib/admin-auth'
 
 interface HeaderProps {
   locale: string
@@ -9,6 +11,18 @@ interface HeaderProps {
 }
 
 export default function Header({ locale, router, t }: HeaderProps) {
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    setIsAdmin(isAdminAuthenticated())
+  }, [])
+
+  const handleLogout = () => {
+    adminLogout()
+    setIsAdmin(false)
+    router.push(`/${locale}`)
+  }
+
   return (
     <header className="cm-header">
       <div className="cm-header-title">
@@ -42,8 +56,16 @@ export default function Header({ locale, router, t }: HeaderProps) {
         </div>
 
         <div className="cm-header-nav">
-          <a href={`/${locale}/auth/login`}>{t('nav.login')}</a>
-          <a href={`/${locale}/admin`}>{t('nav.admin')}</a>
+          {isAdmin ? (
+            <>
+              <a href={`/${locale}/admin`}>{t('nav.admin')}</a>
+              <a style={{ cursor: 'pointer' }} onClick={handleLogout}>
+                {t('nav.logout')}
+              </a>
+            </>
+          ) : (
+            <a href={`/${locale}/auth/login`}>{t('nav.login')}</a>
+          )}
           <a href={locale === 'es' ? '/en' : '/es'}>
             {locale === 'es' ? 'English' : 'Español'}
           </a>
