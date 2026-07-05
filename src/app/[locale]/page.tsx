@@ -43,22 +43,9 @@ export default function HomePage() {
 
   const rootCategories = seedData.categories.filter(c => !c.parentId)
   const recentEntries = [...seedData.entries].slice(0, 4)
-  const totalEntries = seedData.entries.length
-  const totalCategories = seedData.categories.length
-  const totalSubsections = seedData.subsections.length
 
-  const realityStatuses = [
-    { key: 'historical', color: '#2d5a8a' },
-    { key: 'scientific', color: '#2d7a3a' },
-    { key: 'hypothesis', color: '#8a6d2d' },
-    { key: 'theoretical', color: '#6d2d8a' },
-    { key: 'mythological', color: '#8a2d4a' },
-    { key: 'speculative', color: '#8a5a2d' },
-    { key: 'conspiratorial', color: '#8a2d2d' },
-    { key: 'fiction', color: '#4a6a8a' },
-    { key: 'philosophical', color: '#3a6a6a' },
-    { key: 'unclassified', color: '#666666' },
-  ]
+  const getEntryCount = (categoryId: string) =>
+    seedData.entries.filter(e => e.categoryId === categoryId).length
 
   if (phase === 'splash') {
     return <SplashScreen onComplete={() => setPhase('disclaimer')} locale={locale} dict={dict} />
@@ -78,174 +65,131 @@ export default function HomePage() {
         <Sidebar locale={locale} router={router} t={t} />
 
         <main className="cm-main">
+          {/* Window 1: Welcome & Stats */}
           <div className="cm-content-box">
             <h1>{t('site.title')}</h1>
+            <p className="mt-2" style={{ fontSize: 13, color: '#444' }}>{t('site.subtitle')}</p>
+            <p style={{ fontSize: 11, color: '#666', marginTop: 4 }}>{t('site.description')}</p>
 
-            <div className="flex items-center gap-3 mb-6 p-4 bg-[var(--color-cm-sidebar-bg)] border border-[var(--color-cm-border)]">
-              <span className="text-4xl">📜</span>
-              <div>
-                <p className="text-lg italic text-gray-600">{t('site.subtitle')}</p>
-                <p className="text-sm text-gray-500 mt-1">{t('site.description')}</p>
-              </div>
-            </div>
-
-            {/* Stats */}
             <div className="cm-stats">
               <div className="cm-stat">
-                <div className="cm-stat-number">{totalEntries}</div>
+                <div className="cm-stat-number">{seedData.entries.length}</div>
                 <div className="cm-stat-label">{t('home.totalEntries')}</div>
               </div>
               <div className="cm-stat">
-                <div className="cm-stat-number">{totalCategories}</div>
-                <div className="cm-stat-label">
-                  {locale === 'es' ? 'categorías' : 'categories'}
-                </div>
+                <div className="cm-stat-number">{seedData.categories.length}</div>
+                <div className="cm-stat-label">{locale === 'es' ? 'categorías' : 'categories'}</div>
               </div>
               <div className="cm-stat">
-                <div className="cm-stat-number">{totalSubsections}</div>
-                <div className="cm-stat-label">
-                  {locale === 'es' ? 'subsecciones' : 'subsections'}
-                </div>
+                <div className="cm-stat-number">{seedData.subsections.length}</div>
+                <div className="cm-stat-label">{locale === 'es' ? 'subsecciones' : 'subsections'}</div>
               </div>
             </div>
+          </div>
 
-            {/* Organization explanation */}
-            <h2>
-              {locale === 'es' ? '📖 Organización del archivo' : '📖 Archive organization'}
-            </h2>
-            <p>
-              {locale === 'es'
-                ? 'Codex Mundi está organizado en categorías y subcategorías que abarcan todas las áreas del conocimiento humano. Cada entrada contiene información detallada con subsecciones, y está clasificada según su estado de realidad (ver la leyenda más abajo).'
-                : 'Codex Mundi is organized into categories and subcategories covering all areas of human knowledge. Each entry contains detailed information with subsections and is classified according to its reality status (see legend below).'}
-            </p>
-            <p>
-              {locale === 'es'
-                ? 'Puedes navegar usando el menú lateral, buscar términos específicos con el buscador superior, o explorar las categorías principales desde el mapa de conocimiento.'
-                : 'You can navigate using the sidebar menu, search for specific terms with the search bar above, or explore the main categories from the knowledge map.'}
-            </p>
-
-            <hr className="cm-divider" />
-
-            {/* Knowledge Map */}
-            <h2>
-              {locale === 'es' ? '🗺️ Mapa del conocimiento' : '🗺️ Knowledge map'}
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
-              {locale === 'es'
-                ? 'Visualización general de las categorías y su contenido. Haz clic para explorar.'
-                : 'General visualization of categories and their content. Click to explore.'}
-            </p>
-            <div className="cm-map">
+          {/* Window 2: Category Browser */}
+          <div className="cm-content-box">
+            <h1>{locale === 'es' ? 'Explorar categorías' : 'Browse categories'}</h1>
+            <div className="cm-grid-2">
               {rootCategories.map((cat) => {
-                const catName = locale === 'es' ? cat.name_es : cat.name_en
+                const name = locale === 'es' ? cat.name_es : cat.name_en
+                const desc = locale === 'es' ? cat.description_es : cat.description_en
                 const subCats = seedData.categories.filter(c => c.parentId === cat.id)
-                const catEntries = seedData.entries.filter(e => {
-                  const ids = [cat.id, ...subCats.map(c => c.id)]
-                  return ids.includes(e.categoryId)
-                })
+                const entryCount = getEntryCount(cat.id) + subCats.reduce((s, c) => s + getEntryCount(c.id), 0)
                 return (
-                  <div key={cat.id} className="cm-map-node">
-                    <div
-                      className="cm-map-node-title"
-                      onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
-                    >
-                      {cat.icon} {catName}
-                      <span className="ml-2 text-[10px] text-gray-400">
-                        ({catEntries.length} {t('home.totalEntries')})
-                      </span>
-                    </div>
-                    <div className="cm-map-children">
-                      {subCats.map((sub) => {
-                        const subName = locale === 'es' ? sub.name_es : sub.name_en
-                        const subEntries = seedData.entries.filter(e => e.categoryId === sub.id)
-                        return (
-                          <div
-                            key={sub.id}
-                            className="cm-map-child"
-                            onClick={() => router.push(`/${locale}/categories/${sub.slug}`)}
-                          >
-                            {sub.icon} {subName} ({subEntries.length})
-                          </div>
-                        )
-                      })}
-                      {catEntries.filter(e => e.categoryId === cat.id).map((entry) => {
-                        const title = locale === 'es' ? entry.title_es : entry.title_en
-                        return (
-                          <div
-                            key={entry.id}
-                            className="cm-map-child"
-                            onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}
-                          >
-                            📄 {title}
-                          </div>
-                        )
-                      })}
+                  <div
+                    key={cat.id}
+                    className="cm-card"
+                    onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
+                  >
+                    <div className="cm-card-title">{cat.icon} {name}</div>
+                    <div className="cm-card-excerpt">{truncate(desc, 120)}</div>
+                    <div className="cm-meta mt-1">
+                      {subCats.length} subcategorías · {entryCount} {t('home.totalEntries')}
                     </div>
                   </div>
                 )
               })}
             </div>
-
             <hr className="cm-divider" />
-
-            {/* Reality Status Legend */}
-            <h2>
+            <div className="cm-meta">
               {locale === 'es'
-                ? '🎯 Leyenda: Estados de realidad'
-                : '🎯 Legend: Reality states'}
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
+                ? 'Haz clic en cualquier categoría para explorar su contenido.'
+                : 'Click any category to explore its content.'}
+            </div>
+          </div>
+
+          {/* Window 3: Recent Entries */}
+          <div className="cm-content-box">
+            <h1>{t('home.recentEntries')}</h1>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid #d4d0c8' }}>
+                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
+                    {locale === 'es' ? 'Entrada' : 'Entry'}
+                  </th>
+                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
+                    {locale === 'es' ? 'Categoría' : 'Category'}
+                  </th>
+                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
+                    {locale === 'es' ? 'Estado' : 'Status'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentEntries.map((entry) => {
+                  const title = locale === 'es' ? entry.title_es : entry.title_en
+                  const excerpt = locale === 'es' ? entry.excerpt_es : entry.excerpt_en
+                  const cat = seedData.categories.find(c => c.id === entry.categoryId)
+                  const catName = cat ? (locale === 'es' ? cat.name_es : cat.name_en) : ''
+                  return (
+                    <tr
+                      key={entry.id}
+                      className="cm-card"
+                      style={{ cursor: 'pointer', borderBottom: '1px solid #ece9d8' }}
+                      onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}
+                    >
+                      <td style={{ padding: '8px' }}>
+                        <div style={{ fontWeight: 'bold', fontSize: 12 }}>{title}</div>
+                        <div className="cm-card-excerpt">{truncate(excerpt, 100)}</div>
+                      </td>
+                      <td style={{ padding: '8px', fontSize: 11, color: '#666', verticalAlign: 'top' }}>
+                        {cat?.icon} {catName}
+                      </td>
+                      <td style={{ padding: '8px', verticalAlign: 'top' }}>
+                        <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Window 4: Reality Legend */}
+          <div className="cm-content-box">
+            <h1>{locale === 'es' ? 'Clasificación por realidad' : 'Reality classification'}</h1>
+            <p className="cm-meta" style={{ marginBottom: 8 }}>
               {locale === 'es'
                 ? 'Cada entrada está clasificada según su nivel de verificabilidad:'
                 : 'Each entry is classified according to its level of verifiability:'}
             </p>
             <div className="cm-legend">
-              {realityStatuses.map((rs) => (
-                <div key={rs.key} className="cm-legend-item">
-                  <div className="cm-legend-dot" style={{ background: rs.color }} />
+              {Object.entries(realityColors).map(([key, color]) => (
+                <div key={key} className="cm-legend-item">
+                  <div className="cm-legend-dot" style={{ background: color }} />
                   <div>
                     <div className="cm-legend-label">
-                      {getNestedValue(dict, `reality.${rs.key}`)}
+                      {getNestedValue(dict, `reality.${key}`)}
                     </div>
                     <div className="cm-legend-desc">
                       {locale === 'es'
-                        ? realityDescriptions.es[rs.key]
-                        : realityDescriptions.en[rs.key]}
+                        ? realityDescriptions.es[key]
+                        : realityDescriptions.en[key]}
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Recent entries */}
-          <div className="cm-content-box">
-            <h2>{t('home.recentEntries')}</h2>
-            <div className="flex flex-col gap-3">
-              {recentEntries.map((entry) => {
-                const title = locale === 'es' ? entry.title_es : entry.title_en
-                const excerpt = locale === 'es' ? entry.excerpt_es : entry.excerpt_en
-                const cat = seedData.categories.find(c => c.id === entry.categoryId)
-                return (
-                  <div
-                    key={entry.id}
-                    className="cm-card"
-                    onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}
-                  >
-                    <div className="cm-card-title">{title}</div>
-                    <div className="cm-card-excerpt">{truncate(excerpt, 200)}</div>
-                    <div className="cm-meta mt-2 flex gap-2 items-center">
-                      <div className="cm-legend-dot inline-block" style={{
-                        background: realityColors[entry.realityStatus] || '#666'
-                      }} />
-                      <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
-                      {cat && (
-                        <span>{locale === 'es' ? cat.name_es : cat.name_en}</span>
-                      )}
-                    </div>
-                  </div>
-                )
-              })}
             </div>
           </div>
 
@@ -259,27 +203,27 @@ export default function HomePage() {
 
 const realityDescriptions: Record<string, Record<string, string>> = {
   es: {
-    historical: 'Información respaldada por registros históricos y evidencia documental',
-    scientific: 'Basado en el método científico y evidencia empírica',
-    hypothesis: 'Propuesta teórica aún no confirmada ni refutada',
-    theoretical: 'Construcción teórica sin validación empírica directa',
-    mythological: 'Proveniente de mitos, leyendas y tradiciones orales',
-    speculative: 'Información especulativa sin base sólida verificable',
-    conspiratorial: 'Teorías alternativas que contradicen la narrativa oficial',
-    fiction: 'Proveniente de obras de ficción, literatura o arte',
-    philosophical: 'Reflexión filosófica sin pretensión de verdad factual',
-    unclassified: 'Sin clasificar o pendiente de categorización',
+    historical: 'Respaldado por evidencia documental',
+    scientific: 'Basado en el método científico',
+    hypothesis: 'Propuesta no confirmada ni refutada',
+    theoretical: 'Construcción sin validación empírica',
+    mythological: 'Mitos, leyendas y tradición oral',
+    speculative: 'Sin base sólida verificable',
+    conspiratorial: 'Contradice la narrativa oficial',
+    fiction: 'Literatura, arte o ficción',
+    philosophical: 'Reflexión sin pretensión factual',
+    unclassified: 'Pendiente de categorización',
   },
   en: {
-    historical: 'Information supported by historical records and documentary evidence',
-    scientific: 'Based on the scientific method and empirical evidence',
-    hypothesis: 'Theoretical proposal not yet confirmed or refuted',
-    theoretical: 'Theoretical construction without direct empirical validation',
-    mythological: 'From myths, legends, and oral traditions',
-    speculative: 'Speculative information without solid verifiable basis',
-    conspiratorial: 'Alternative theories contradicting the official narrative',
-    fiction: 'From works of fiction, literature, or art',
-    philosophical: 'Philosophical reflection without claim to factual truth',
-    unclassified: 'Unclassified or pending categorization',
+    historical: 'Supported by documentary evidence',
+    scientific: 'Based on the scientific method',
+    hypothesis: 'Not yet confirmed or refuted',
+    theoretical: 'No direct empirical validation',
+    mythological: 'Myths, legends, and oral tradition',
+    speculative: 'Without solid verifiable basis',
+    conspiratorial: 'Contradicts the official narrative',
+    fiction: 'From literature, art, or fiction',
+    philosophical: 'No claim to factual truth',
+    unclassified: 'Pending categorization',
   },
 }
