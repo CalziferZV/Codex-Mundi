@@ -41,34 +41,11 @@ export default function SplashScreen({ onComplete, locale, dict }: SplashScreenP
         <div style={{
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'all 1s ease',
-          marginBottom: 24,
+          transition: 'all 1.5s ease',
+          marginBottom: 20,
         }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 80, height: 80,
-            background: 'linear-gradient(135deg, #3a7ada, #1a3a6a)',
-            border: '3px solid rgba(255,255,255,0.3)',
-            borderRadius: 12,
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.5)',
-            fontSize: 36,
-            padding: '10px 20px',
-          }}>
-            <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 50 }} />
-          </div>
+          <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 52 }} />
         </div>
-
-        <h1 style={{
-          fontFamily: 'Tahoma, sans-serif', fontSize: 52, fontWeight: 'bold',
-          color: '#ffffff', letterSpacing: 8, textTransform: 'uppercase',
-          textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 40px rgba(58,122,218,0.3)',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'all 1.3s ease',
-          margin: '0 0 12px 0',
-        }}>
-          Codex Mundi
-        </h1>
 
         <div style={{
           width: visible ? 200 : 0,
