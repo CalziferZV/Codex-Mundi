@@ -1,3 +1,11 @@
+import { newCategories as newCategories58, newEntries as newEntries58, newSubsections as newSubsections58 } from './seed-domains-5-8'
+import {
+  newCategories as newCategories9,
+  newEntries as newEntries9,
+  newSubsections as newSubsections9,
+} from './seed-data'
+import { newCategories as newCategories14, newEntries as newEntries14, newSubsections as newSubsections14 } from './seed-domains-1-4'
+
 export interface SeedCategory {
   id: string
   name_es: string
@@ -227,6 +235,9 @@ export const seedData = {
       icon: '🧠',
       parentId: null,
     },
+    ...newCategories58,
+    ...newCategories9,
+    ...newCategories14,
   ] as SeedCategory[],
 
   entries: [
@@ -873,6 +884,9 @@ The concept of the collective unconscious has influenced psychology, anthropolog
       createdAt: '2026-01-22T00:00:00Z',
       updatedAt: '2026-01-22T00:00:00Z',
     },
+    ...newEntries58,
+    ...newEntries9,
+    ...newEntries14,
   ] as SeedEntry[],
 
   subsections: [
@@ -1245,5 +1259,8 @@ The concept of the collective unconscious has influenced psychology, anthropolog
       content_en: 'The concept of the collective unconscious has been widely criticized for its lack of empirical basis and speculative nature. Behavioral and cognitive psychologists question the existence of inherited psychic contents, preferring explanations based on cultural transmission and learning. Nonetheless, the idea has had enormous influence in fields such as anthropology (Campbell, Eliade), literary criticism (Northrop Frye), comparative religion studies, and psychotherapy. Jung\'s work inspired the creation of the Pearson-Marr Archetype Indicator and the study of archetypes in marketing and contemporary narrative.',
       order: 1,
     },
+    ...newSubsections58,
+    ...newSubsections9,
+    ...newSubsections14,
   ] as SeedSubsection[],
 }
