@@ -104,23 +104,23 @@ export default function HomePage() {
           {/* Quick Actions */}
           <div className="cm-quick-actions">
             <button className="cm-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              {locale === 'es' ? '⬆ Inicio' : '⬆ Top'}
+              {locale === 'es' ? '⬆ Subir arriba' : '⬆ Top of page'}
             </button>
-            <button className="cm-btn" onClick={() => {
+            <button className="cm-btn" title={locale === 'es' ? 'Abrir una entrada al azar' : 'Open a random entry'} onClick={() => {
               const all = seedData.entries
               const r = all[Math.floor(Math.random() * all.length)]
               router.push(`/${locale}/entry/${r.slug}`)
             }}>
-              {locale === 'es' ? '🎲 Aleatorio' : '🎲 Random'}
+              🎲 {locale === 'es' ? 'Entrada aleatoria' : 'Random entry'}
             </button>
-            <button className="cm-btn" onClick={() => {
+            <button className="cm-btn" title={locale === 'es' ? 'Ir a la entrada más reciente' : 'Go to the latest entry'} onClick={() => {
               const last = [...seedData.entries].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
               router.push(`/${locale}/entry/${last.slug}`)
             }}>
-              {locale === 'es' ? '🕐 Última' : '🕐 Latest'}
+              🕐 {locale === 'es' ? 'Última actualizada' : 'Latest updated'}
             </button>
-            <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/history`)}>
-              {locale === 'es' ? '📜 Historia' : '📜 History'}
+            <button className="cm-btn" title={locale === 'es' ? 'Categoría de Historia' : 'History category'} onClick={() => router.push(`/${locale}/categories/history`)}>
+              📜 {locale === 'es' ? 'Ir a Historia' : 'Go to History'}
             </button>
           </div>
 
