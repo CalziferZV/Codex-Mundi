@@ -1,32 +1,18 @@
-const ADMIN_EMAIL = 'carlosrebollar09@gmail.com'
-const STORAGE_KEY = 'codex_admin'
+const ADMIN_PASSWORD = 'CodexMundi2026'
 
-export interface AdminSession {
-  email: string
-  loggedInAt: number
-}
-
-export function adminLogin(email: string): boolean {
-  if (email.toLowerCase().trim() !== ADMIN_EMAIL) return false
-  const session: AdminSession = { email: ADMIN_EMAIL, loggedInAt: Date.now() }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(session))
-  return true
-}
-
-export function adminLogout(): void {
-  localStorage.removeItem(STORAGE_KEY)
-}
-
-export function getAdminSession(): AdminSession | null {
-  if (typeof window === 'undefined') return null
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : null
-  } catch {
-    return null
-  }
+export function verifyAdminPassword(password: string): boolean {
+  return password === ADMIN_PASSWORD
 }
 
 export function isAdminAuthenticated(): boolean {
-  return getAdminSession() !== null
+  if (typeof window === 'undefined') return false
+  return sessionStorage.getItem('codex_admin_auth') === 'true'
+}
+
+export function setAdminAuthenticated(): void {
+  sessionStorage.setItem('codex_admin_auth', 'true')
+}
+
+export function clearAdminAuth(): void {
+  sessionStorage.removeItem('codex_admin_auth')
 }
