@@ -38,14 +38,17 @@ export default function SplashScreen({ onComplete, locale, dict }: SplashScreenP
       }}
     >
       <div style={{ textAlign: 'center', padding: 40 }}>
-        <div style={{
+        <h1 style={{
+          fontFamily: 'Tahoma, sans-serif', fontSize: 52, fontWeight: 'bold',
+          color: '#ffffff', letterSpacing: 8, textTransform: 'uppercase',
+          textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 40px rgba(58,122,218,0.3)',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(20px)',
           transition: 'all 1.5s ease',
-          marginBottom: 20,
+          margin: '0 0 20px 0',
         }}>
-          <img src="/logo-header.png" alt="Codex Mundi" style={{ width: '80%', maxWidth: 600, display: 'block', margin: '0 auto' }} />
-        </div>
+          Codex Mundi
+        </h1>
 
         <div style={{
           width: visible ? 200 : 0,

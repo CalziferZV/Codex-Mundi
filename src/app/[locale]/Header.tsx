@@ -12,9 +12,7 @@ export default function Header({ locale, router, t }: HeaderProps) {
   return (
     <header className="cm-header">
       <div className="cm-header-title">
-        <a href={`/${locale}`}>
-          <img src="/logo-header.png" alt="Codex Mundi" style={{ height: 32 }} />
-        </a>
+        <a href={`/${locale}`}>{t('site.title')}</a>
       </div>
 
       <div className="flex items-center gap-4">
