@@ -1,0 +1,98 @@
+{
+  "site": {
+    "title": "Codex Mundi",
+    "subtitle": "The Library of Alexandria of Human Knowledge",
+    "description": "A compendium of all human knowledge, real and speculative",
+    "disclaimer": "Nothing written here should be taken as absolute truth. This archive of human knowledge compiles information from multiple sources, including theories, hypotheses, myths, legends, and speculations. Everything is open to improvement, contrast, and correction. Knowledge is a living organism that evolves with every contribution."
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "search": "Search",
+    "admin": "Admin",
+    "login": "Log in",
+    "register": "Register",
+    "logout": "Log out",
+    "start": "Start",
+    "contributions": "Contributions",
+    "entries": "Entries"
+  },
+  "home": {
+    "welcome": "Welcome to Codex Mundi",
+    "explore": "Explore the categories to discover knowledge",
+    "recentEntries": "Recent entries",
+    "allCategories": "All categories",
+    "totalEntries": "total entries",
+    "enter": "ENTER CODEX MUNDI"
+  },
+  "categories": {
+    "title": "Categories",
+    "noEntries": "No entries in this category",
+    "backToCategories": "Back to categories"
+  },
+  "entry": {
+    "realityStatus": "Reality status",
+    "subsections": "Subsections",
+    "backToCategory": "Back to category",
+    "source": "Source",
+    "contributions": "Contributions",
+    "suggestEdit": "Suggest edit",
+    "editedBy": "Edited by",
+    "lastUpdated": "Last updated"
+  },
+  "search": {
+    "title": "Search Codex Mundi",
+    "placeholder": "Type your search...",
+    "noResults": "No results found",
+    "resultsFor": "Results for",
+    "searchIn": "Search the entire archive"
+  },
+  "auth": {
+    "loginTitle": "Log in",
+    "registerTitle": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "submitLogin": "Enter",
+    "submitRegister": "Register",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "registerLink": "Register here",
+    "loginLink": "Log in here"
+  },
+  "admin": {
+    "dashboard": "Admin dashboard",
+    "manageEntries": "Manage entries",
+    "manageCategories": "Manage categories",
+    "manageContributions": "Manage contributions",
+    "pendingContributions": "Pending contributions",
+    "createEntry": "Create entry",
+    "createCategory": "Create category",
+    "edit": "Edit",
+    "delete": "Delete",
+    "approve": "Approve",
+    "reject": "Reject"
+  },
+  "reality": {
+    "historical": "Historical verified",
+    "scientific": "Scientific",
+    "hypothesis": "Hypothesis",
+    "theoretical": "Theoretical",
+    "mythological": "Mythological",
+    "speculative": "Speculative",
+    "conspiratorial": "Conspiratorial",
+    "fiction": "Fiction",
+    "philosophical": "Philosophical",
+    "unclassified": "Unclassified"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "confirm": "Confirm",
+    "accept": "Accept and enter"
+  }
+}

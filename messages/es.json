@@ -1,0 +1,98 @@
+{
+  "site": {
+    "title": "Codex Mundi",
+    "subtitle": "La Biblioteca de Alejandría del Conocimiento Humano",
+    "description": "Un compendio de todo el conocimiento humano, real y especulativo",
+    "disclaimer": "Nada de lo aquí escrito debe tomarse como verdad absoluta. Este archivo del conocimiento humano recopila información de múltiples fuentes, incluyendo teorías, hipótesis, mitos, leyendas y especulaciones. Todo está abierto a mejora, contraste y corrección. El conocimiento es un organismo vivo que evoluciona con cada contribución."
+  },
+  "nav": {
+    "home": "Inicio",
+    "categories": "Categorías",
+    "search": "Buscar",
+    "admin": "Admin",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión",
+    "start": "Inicio",
+    "contributions": "Contribuciones",
+    "entries": "Entradas"
+  },
+  "home": {
+    "welcome": "Bienvenido a Codex Mundi",
+    "explore": "Explora las categorías para descubrir conocimiento",
+    "recentEntries": "Entradas recientes",
+    "allCategories": "Todas las categorías",
+    "totalEntries": "entradas en total",
+    "enter": "ENTRAR A CODEX MUNDI"
+  },
+  "categories": {
+    "title": "Categorías",
+    "noEntries": "No hay entradas en esta categoría",
+    "backToCategories": "Volver a categorías"
+  },
+  "entry": {
+    "realityStatus": "Estado de realidad",
+    "subsections": "Subsecciones",
+    "backToCategory": "Volver a la categoría",
+    "source": "Fuente",
+    "contributions": "Contribuciones",
+    "suggestEdit": "Sugerir edición",
+    "editedBy": "Editado por",
+    "lastUpdated": "Última actualización"
+  },
+  "search": {
+    "title": "Buscar en Codex Mundi",
+    "placeholder": "Escribe tu búsqueda...",
+    "noResults": "No se encontraron resultados",
+    "resultsFor": "Resultados para",
+    "searchIn": "Buscar en todo el archivo"
+  },
+  "auth": {
+    "loginTitle": "Iniciar sesión",
+    "registerTitle": "Crear cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "username": "Nombre de usuario",
+    "submitLogin": "Entrar",
+    "submitRegister": "Registrarse",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "registerLink": "Regístrate aquí",
+    "loginLink": "Inicia sesión aquí"
+  },
+  "admin": {
+    "dashboard": "Panel de administración",
+    "manageEntries": "Gestionar entradas",
+    "manageCategories": "Gestionar categorías",
+    "manageContributions": "Gestionar contribuciones",
+    "pendingContributions": "Contribuciones pendientes",
+    "createEntry": "Crear entrada",
+    "createCategory": "Crear categoría",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "approve": "Aprobar",
+    "reject": "Rechazar"
+  },
+  "reality": {
+    "historical": "Histórico comprobado",
+    "scientific": "Científico",
+    "hypothesis": "Hipótesis",
+    "theoretical": "Teórico",
+    "mythological": "Mitológico",
+    "speculative": "Especulativo",
+    "conspiratorial": "Conspirativo",
+    "fiction": "Ficción",
+    "philosophical": "Filosófico",
+    "unclassified": "Sin clasificar"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "confirm": "Confirmar",
+    "accept": "Aceptar y entrar"
+  }
+}
