@@ -145,8 +145,8 @@ body {
 
 /* ===== SIDEBAR (start menu style) ===== */
 .cm-sidebar {
-  width: 200px;
-  min-width: 200px;
+  width: 220px;
+  min-width: 220px;
   background: var(--color-xp-sidebar);
   border-right: 1px solid var(--color-xp-border);
   padding: 6px 0;

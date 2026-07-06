@@ -284,46 +284,7 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Panel 3: Recent Entries */}
-          <XpPanel title={t('home.recentEntries')} defaultOpen={true}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid #d4d0c8' }}>
-                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
-                    {locale === 'es' ? 'Entrada' : 'Entry'}
-                  </th>
-                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
-                    {locale === 'es' ? 'Categoría' : 'Category'}
-                  </th>
-                  <th style={{ textAlign: 'left', padding: '4px 8px', fontSize: 11, color: '#666' }}>
-                    {locale === 'es' ? 'Estado' : 'Status'}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...seedData.entries].slice(0, 1000).map((entry) => {
-                  const title = locale === 'es' ? entry.title_es : entry.title_en
-                  const excerpt = locale === 'es' ? entry.excerpt_es : entry.excerpt_en
-                  const cat = seedData.categories.find(c => c.id === entry.categoryId)
-                  return (
-                    <tr key={entry.id} className="cm-card" style={{ cursor: 'pointer', borderBottom: '1px solid #ece9d8' }}
-                        onClick={() => router.push(`/${locale}/entry/${entry.slug}`)}>
-                      <td style={{ padding: '8px' }}>
-                        <div style={{ fontWeight: 'bold', fontSize: 12 }}>{title}</div>
-                        <div className="cm-card-excerpt">{truncate(excerpt, 100)}</div>
-                      </td>
-                      <td style={{ padding: '8px', fontSize: 11, color: '#666', verticalAlign: 'top' }}>
-                        {cat?.icon} {cat ? (locale === 'es' ? cat.name_es : cat.name_en) : ''}
-                      </td>
-                      <td style={{ padding: '8px', verticalAlign: 'top' }}>
-                        <RealityTag status={entry.realityStatus} dict={dict} />
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </XpPanel>
+
 
           {/* Panel 4: Knowledge Map */}
           <XpPanel title={locale === 'es' ? '🗺️ Mapa del conocimiento' : '🗺️ Knowledge map'} defaultOpen={false}>

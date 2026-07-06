@@ -32,6 +32,7 @@ export default function Sidebar({ locale, router, t }: SidebarProps) {
               <a
                 className={`cm-sidebar-item ${pathname.includes(cat.slug) ? 'active' : ''}`}
                 onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
+                title={name}
               >
                 {cat.icon} {name}
               </a>
@@ -42,6 +43,7 @@ export default function Sidebar({ locale, router, t }: SidebarProps) {
                     key={sub.id}
                     className={`cm-sidebar-item ml-3 text-[12px] ${pathname.includes(sub.slug) ? 'active' : ''}`}
                     onClick={() => router.push(`/${locale}/categories/${sub.slug}`)}
+                    title={subName}
                   >
                     {sub.icon} {subName}
                   </a>
