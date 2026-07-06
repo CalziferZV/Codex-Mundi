@@ -6,25 +6,13 @@ import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
 import { seedData } from '@/lib/seed'
 import { truncate } from '@/lib/utils'
+import RealityTag, { realityColors } from '@/components/RealityTag'
 import SplashScreen from './SplashScreen'
 import DisclaimerModal from './DisclaimerModal'
 import Sidebar from './Sidebar'
 import Header from './Header'
 import Footer from './Footer'
 import CookieBanner from './CookieBanner'
-
-const realityColors: Record<string, string> = {
-  historical: '#2d5a8a',
-  scientific: '#2d7a3a',
-  hypothesis: '#8a6d2d',
-  theoretical: '#6d2d8a',
-  mythological: '#8a2d4a',
-  speculative: '#8a5a2d',
-  conspiratorial: '#8a2d2d',
-  fiction: '#4a6a8a',
-  philosophical: '#3a6a6a',
-  unclassified: '#666666',
-}
 
 type Phase = 'splash' | 'disclaimer' | 'library'
 
@@ -258,7 +246,7 @@ export default function HomePage() {
                   {truncate(locale === 'es' ? randomEntry.excerpt_es : randomEntry.excerpt_en, 200)}
                 </div>
                 <div className="cm-meta" style={{ marginTop: 4 }}>
-                  <span className="cm-tag">{getNestedValue(dict, `reality.${randomEntry.realityStatus}`)}</span>
+                  <RealityTag status={randomEntry.realityStatus} dict={dict} />
                   <span style={{ marginLeft: 8 }}>
                     {locale === 'es' ? 'Entrada aleatoria' : 'Random entry'}
                   </span>
@@ -299,7 +287,7 @@ export default function HomePage() {
                         {cat?.icon} {cat ? (locale === 'es' ? cat.name_es : cat.name_en) : ''}
                       </td>
                       <td style={{ padding: '8px', verticalAlign: 'top' }}>
-                        <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
+                        <RealityTag status={entry.realityStatus} dict={dict} />
                       </td>
                     </tr>
                   )

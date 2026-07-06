@@ -157,35 +157,4 @@ export const newCategories: SeedCategory[] = [
     parentId: 'cat-cosmology',
   },
 
-  // ===================== DOMAIN 12: CIENCIA (subcategorías) =====================
-  {
-    id: 'cat-physics',
-    name_es: 'Física',
-    name_en: 'Physics',
-    slug: 'physics',
-    description_es: 'Estudio de la materia, la energía, el espacio y el tiempo, y las leyes fundamentales que rigen el universo.',
-    description_en: 'Study of matter, energy, space, and time, and the fundamental laws governing the universe.',
-    icon: '⚛️',
-    parentId: 'cat-science',
-  },
-  {
-    id: 'cat-chemistry',
-    name_es: 'Química',
-    name_en: 'Chemistry',
-    slug: 'chemistry',
-    description_es: 'Estudio de la composición, estructura, propiedades y transformaciones de la materia.',
-    description_en: 'Study of the composition, structure, properties, and transformations of matter.',
-    icon: '🧪',
-    parentId: 'cat-science',
-  },
-  {
-    id: 'cat-mathematics',
-    name_es: 'Matemáticas',
-    name_en: 'Mathematics',
-    slug: 'mathematics',
-    description_es: 'Estudio de patrones, estructuras, cantidades y relaciones abstractas mediante el razonamiento lógico.',
-    description_en: 'Study of patterns, structures, quantities, and abstract relationships through logical reasoning.',
-    icon: '📐',
-    parentId: 'cat-science',
-  },
 ]

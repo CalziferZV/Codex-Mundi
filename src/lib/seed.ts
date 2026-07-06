@@ -5,6 +5,13 @@ import {
   newSubsections as newSubsections9,
 } from './seed-data'
 import { newCategories as newCategories14, newEntries as newEntries14, newSubsections as newSubsections14 } from './seed-domains-1-4'
+import { newExpandedCategories } from './seed-expansion-categories'
+import { newTechEntries, newTechSubsections } from './seed-entries-tech'
+import { newArtsEntries, newArtsSubsections } from './seed-entries-arts'
+import { newHistoryEntries, newHistorySubsections } from './seed-entries-history'
+import { newReligionEntries, newReligionSubsections } from './seed-entries-religion'
+import { newScienceEntries, newScienceSubsections } from './seed-entries-science'
+import { newSupplementEntries, newSupplementSubsections } from './seed-entries-supplement'
 
 export interface SeedCategory {
   id: string
@@ -248,6 +255,7 @@ export const seedData = {
     ...newCategories58,
     ...newCategories9,
     ...newCategories14,
+    ...newExpandedCategories,
   ] as SeedCategory[],
 
   entries: [
@@ -897,6 +905,12 @@ The concept of the collective unconscious has influenced psychology, anthropolog
     ...newEntries58,
     ...newEntries9,
     ...newEntries14,
+    ...newTechEntries,
+    ...newArtsEntries,
+    ...newHistoryEntries,
+    ...newReligionEntries,
+    ...newScienceEntries,
+    ...newSupplementEntries,
   ] as SeedEntry[],
 
   subsections: [
@@ -1272,5 +1286,11 @@ The concept of the collective unconscious has influenced psychology, anthropolog
     ...newSubsections58,
     ...newSubsections9,
     ...newSubsections14,
+    ...newTechSubsections,
+    ...newArtsSubsections,
+    ...newHistorySubsections,
+    ...newReligionSubsections,
+    ...newScienceSubsections,
+    ...newSupplementSubsections,
   ] as SeedSubsection[],
 }

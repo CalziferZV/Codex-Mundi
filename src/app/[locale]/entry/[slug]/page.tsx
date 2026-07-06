@@ -5,6 +5,7 @@ import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
 import { seedData } from '@/lib/seed'
 import { formatDate } from '@/lib/utils'
+import RealityTag from '@/components/RealityTag'
 import Sidebar from '@/app/[locale]/Sidebar'
 import Header from '@/app/[locale]/Header'
 
@@ -85,7 +86,7 @@ export default function EntryPage() {
             <h1>{title}</h1>
 
             <div className="flex gap-2 mb-6">
-              <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
+              <RealityTag status={entry.realityStatus} dict={dict} />
               <span className="cm-meta">{t('entry.lastUpdated')}: {formatDate(entry.updatedAt, locale)}</span>
             </div>
 

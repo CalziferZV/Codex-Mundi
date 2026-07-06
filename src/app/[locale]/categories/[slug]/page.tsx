@@ -5,6 +5,7 @@ import { getDictionary, getNestedValue } from '@/lib/i18n/dictionary'
 import type { Locale } from '@/lib/i18n/config'
 import { seedData } from '@/lib/seed'
 import { truncate } from '@/lib/utils'
+import RealityTag from '@/components/RealityTag'
 import Sidebar from '@/app/[locale]/Sidebar'
 import Header from '@/app/[locale]/Header'
 
@@ -77,7 +78,7 @@ export default function CategoryPage() {
                       <div className="cm-card-title">{title}</div>
                       <div className="cm-card-excerpt">{truncate(excerpt, 200)}</div>
                       <div className="cm-meta mt-2">
-                        <span className="cm-tag">{getNestedValue(dict, `reality.${entry.realityStatus}`)}</span>
+                        <RealityTag status={entry.realityStatus} dict={dict} />
                       </div>
                     </div>
                   )
