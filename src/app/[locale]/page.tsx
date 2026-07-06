@@ -55,8 +55,12 @@ export default function HomePage() {
   const totalCategories = seedData.categories.length
   const totalSubsections = seedData.subsections.length
 
+  const getDescendantIds = (catId: string): string[] => {
+    const children = seedData.categories.filter(c => c.parentId === catId)
+    return [catId, ...children.flatMap(c => getDescendantIds(c.id))]
+  }
   const getEntryCount = (categoryId: string) =>
-    seedData.entries.filter(e => e.categoryId === categoryId).length
+    seedData.entries.filter(e => getDescendantIds(categoryId).includes(e.categoryId)).length
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
