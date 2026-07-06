@@ -168,7 +168,36 @@ export default function HomePage() {
             </div>
           </XpPanel>
 
-          {/* Panel 2: Categories with expand */}
+          {/* Panel 2: New entries announcement */}
+          <XpPanel title={locale === 'es' ? '🎉 Nuevas entradas añadidas' : '🎉 New entries added'} defaultOpen={true}>
+            <div style={{ fontSize: 12, color: '#333', padding: '8px 12px', background: '#ffffcc', border: '1px solid #e5c100', borderRadius: 3, marginBottom: 8 }}>
+              {locale === 'es'
+                ? 'Se han añadido 200 nuevas entradas a Codex Mundi, ampliando las siguientes áreas:'
+                : '200 new entries have been added to Codex Mundi, expanding the following areas:'}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: '4px 0' }}>
+              {[
+                { id: 'cat-history', slug: 'history', icon: '📜', es: 'Historia', en: 'History' },
+                { id: 'cat-religion', slug: 'religion-mythology', icon: '📖', es: 'Religión y Mitología', en: 'Religion & Mythology' },
+                { id: 'cat-philosophy', slug: 'philosophy', icon: '🧠', es: 'Filosofía', en: 'Philosophy' },
+                { id: 'cat-science', slug: 'science', icon: '🔬', es: 'Ciencia', en: 'Science' },
+                { id: 'cat-technology', slug: 'technology', icon: '💻', es: 'Tecnología', en: 'Technology' },
+                { id: 'cat-arts', slug: 'arts-culture', icon: '🎨', es: 'Arte y Cultura', en: 'Arts & Culture' },
+                { id: 'cat-mysteries', slug: 'mysteries-phenomena', icon: '❓', es: 'Misterios y Fenómenos', en: 'Mysteries & Phenomena' },
+              ].map((cat) => (
+                <span
+                  key={cat.id}
+                  className="cm-tag"
+                  style={{ cursor: 'pointer', padding: '4px 10px' }}
+                  onClick={() => router.push(`/${locale}/categories/${cat.slug}`)}
+                >
+                  {cat.icon} {locale === 'es' ? cat.es : cat.en}
+                </span>
+              ))}
+            </div>
+          </XpPanel>
+
+          {/* Panel 3: Categories with expand */}
           <XpPanel title={locale === 'es' ? 'Explorar categorías' : 'Browse categories'} defaultOpen={true}>
             <div className="cm-grid-2">
               {rootCategories.map((cat) => {

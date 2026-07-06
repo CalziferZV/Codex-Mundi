@@ -180,6 +180,9 @@ body {
   font-size: 12px;
   margin: 0 2px;
   border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cm-sidebar-item:hover {
