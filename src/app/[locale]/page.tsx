@@ -284,7 +284,7 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                {[...seedData.entries].slice(0, 6).map((entry) => {
+                {[...seedData.entries].slice(0, 1000).map((entry) => {
                   const title = locale === 'es' ? entry.title_es : entry.title_en
                   const excerpt = locale === 'es' ? entry.excerpt_es : entry.excerpt_en
                   const cat = seedData.categories.find(c => c.id === entry.categoryId)
