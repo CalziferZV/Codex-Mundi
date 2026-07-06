@@ -30,14 +30,25 @@ export default function EntryPage() {
         <Header locale={locale} router={router} t={t} />
         <div className="cm-body">
           <Sidebar locale={locale} router={router} t={t} />
-          <main className="cm-main">
-            <div style={{ marginBottom: 4 }}>
-              <button className="cm-btn" onClick={() => router.push(`/${locale}`)}
-                style={{ padding: '4px 16px' }}>
-                ← {t('common.back')}
-              </button>
-            </div>
+          <main className="cm-main" style={{ paddingTop: 8 }}>
             <div className="cm-content-box">
+              <div className="flex items-center justify-between mb-2" style={{ marginTop: -4 }}>
+                <button className="cm-btn" onClick={() => router.push(`/${locale}`)}
+                  style={{ padding: '2px 12px', fontSize: 11 }}>
+                  ← {t('common.back')}
+                </button>
+                <div style={{ fontSize: 11 }}>
+                  {parentCategory && (
+                    <span className="cm-meta">
+                      <a className="cm-link" onClick={() => router.push(`/${locale}/categories/${parentCategory.slug}`)}>
+                        {parentCatName}
+                      </a>
+                      {' / '}
+                    </span>
+                  )}
+                  <span className="cm-meta">{catName}</span>
+                </div>
+              </div>
               <h1>{locale === 'es' ? 'Entrada no encontrada' : 'Entry not found'}</h1>
             </div>
           </main>
@@ -63,24 +74,24 @@ export default function EntryPage() {
       <Header locale={locale} router={router} t={t} />
       <div className="cm-body">
         <Sidebar locale={locale} router={router} t={t} />
-        <main className="cm-main">
-          <div style={{ marginBottom: 4 }}>
-            <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}
-              style={{ padding: '4px 16px' }}>
-              ← {t('entry.backToCategory')}
-            </button>
-          </div>
+        <main className="cm-main" style={{ paddingTop: 8 }}>
           <div className="cm-content-box">
-            <div style={{ marginBottom: 10 }}>
-              {parentCategory && (
-                <span className="cm-meta">
-                  <a className="cm-link" onClick={() => router.push(`/${locale}/categories/${parentCategory.slug}`)}>
-                    {parentCatName}
-                  </a>
-                  {' / '}
-                </span>
-              )}
-              <span className="cm-meta">{catName}</span>
+            <div className="flex items-center justify-between mb-2" style={{ marginTop: -4 }}>
+              <button className="cm-btn" onClick={() => router.push(`/${locale}/categories/${category?.slug}`)}
+                style={{ padding: '2px 12px', fontSize: 11 }}>
+                ← {t('entry.backToCategory')}
+              </button>
+              <div style={{ fontSize: 11 }}>
+                {parentCategory && (
+                  <span className="cm-meta">
+                    <a className="cm-link" onClick={() => router.push(`/${locale}/categories/${parentCategory.slug}`)}>
+                      {parentCatName}
+                    </a>
+                    {' / '}
+                  </span>
+                )}
+                <span className="cm-meta">{catName}</span>
+              </div>
             </div>
 
             <h1>{title}</h1>
