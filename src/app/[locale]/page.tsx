@@ -153,17 +153,17 @@ export default function HomePage() {
               </div>
               <div className="cm-progress-bar">
                 {(() => {
-                  const target = 350
-                  const pct = Math.min(Math.round((totalEntries / target) * 100), 100)
+                  const t = 500
+                  const pct = Math.min(Math.round((totalEntries / t) * 100), 100)
                   return (
                     <div className="cm-progress-fill" style={{ width: `${pct}%` }}>
                       <div className="cm-progress-text">{pct}%</div>
                     </div>
                   )
                 })()}
-                <div className="cm-progress-text" style={{ color: '#333' }}>
-                  {totalEntries}/{locale === 'es' ? '350 meta' : '350 target'}
-                </div>
+              </div>
+              <div style={{ fontSize: 10, color: '#666', textAlign: 'right', marginTop: 2 }}>
+                {totalEntries}/500 {locale === 'es' ? 'meta' : 'target'}
               </div>
             </div>
           </XpPanel>
