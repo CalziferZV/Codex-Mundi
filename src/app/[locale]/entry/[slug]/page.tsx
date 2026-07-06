@@ -23,6 +23,10 @@ export default function EntryPage() {
     ? seedData.categories.find(c => c.id === category.parentId)
     : null
   const subsections = entry ? seedData.subsections.filter(s => s.entryId === entry.id) : []
+  const catName = category ? (locale === 'es' ? category.name_es : category.name_en) : ''
+  const parentCatName = parentCategory
+    ? (locale === 'es' ? parentCategory.name_es : parentCategory.name_en)
+    : ''
 
   if (!entry) {
     return (
@@ -59,10 +63,6 @@ export default function EntryPage() {
 
   const title = locale === 'es' ? entry.title_es : entry.title_en
   const content = locale === 'es' ? entry.content_es : entry.content_en
-  const catName = category ? (locale === 'es' ? category.name_es : category.name_en) : ''
-  const parentCatName = parentCategory
-    ? (locale === 'es' ? parentCategory.name_es : parentCategory.name_en)
-    : ''
 
   const subsectionTitle = (s: typeof subsections[0]) =>
     locale === 'es' ? s.title_es : s.title_en
