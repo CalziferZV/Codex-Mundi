@@ -113,7 +113,7 @@ Europa occidental experimentó un crecimiento sin precedentes durante los Treint
 Japan underwent a radical transformation under US occupation led by General MacArthur. The new Japanese constitution (1947) established a democratic system and renounced war. The "Japanese economic miracle" made Japan the world's second-largest economy by the 1970s.
 
 Western Europe experienced unprecedented growth during the Thirty Glorious Years (1945-1973). The European Coal and Steel Community (1951) evolved into the European Union. West Germany enjoyed the Wirtschaftswunder (economic miracle) under Ludwig Erhard. These efforts created the foundations of the welfare state, international cooperation, and economic globalization.`,
-    excerpt_es: 'La recuperación de Europa y Asia tras la guerra: Plan Marshall, milagro japonés y unidad europea.', excerpt_en: 'Europe and Asia's recovery after the war: Marshall Plan, Japanese miracle, and European unity.', categoryId: 'cat-contemporary-history', realityStatus: 'historical', imageUrl: '', createdAt: now, updatedAt: now },
+    excerpt_es: 'La recuperación de Europa y Asia tras la guerra: Plan Marshall, milagro japonés y unidad europea.', excerpt_en: 'Postwar reconstruction: Marshall Plan, Japanese miracle, and European unity.', categoryId: 'cat-contemporary-history', realityStatus: 'historical', imageUrl: '', createdAt: now, updatedAt: now },
 
   // ===== ASIAN HISTORY =====
   { id: 'entry-imperial-china', title_es: 'China Imperial', title_en: 'Imperial China', slug: 'china-imperial',
